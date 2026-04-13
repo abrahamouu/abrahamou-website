@@ -1,17 +1,58 @@
-
 import {
+  Github,
   Instagram,
   Linkedin,
   Mail,
   MapPin,
   Phone,
   Send,
-  Twitch,
-  Twitter,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
+import { createElement, useState } from "react";
+
+const contactItems = [
+  {
+    icon: Mail,
+    label: "Email",
+    value: "abrahamou2018@gmail.com",
+    href: "mailto:abrahamou2018@gmail.com",
+  },
+  {
+    icon: Phone,
+    label: "Phone",
+    value: "+1 (626) 482-4787",
+    href: "tel:+16264824787",
+  },
+  {
+    icon: MapPin,
+    label: "Location",
+    value: "Irvine, CA, United States",
+  },
+];
+
+const socialLinks = [
+  {
+    icon: Linkedin,
+    href: "https://www.linkedin.com/in/abrahamou/",
+    label: "LinkedIn",
+  },
+  {
+    icon: Github,
+    href: "https://github.com/abrahamouu",
+    label: "GitHub",
+  },
+  {
+    icon: Instagram,
+    href: "https://www.instagram.com/abrahamouu/",
+    label: "Instagram",
+  },
+  {
+    icon: Mail,
+    href: "mailto:abrahamou2018@gmail.com",
+    label: "Email",
+  },
+];
 
 export const ContactSection = () => {
   const { toast } = useToast();
@@ -30,157 +71,138 @@ export const ContactSection = () => {
       setIsSubmitting(false);
     }, 1500);
   };
+
   return (
-    <section id="contact" className="py-24 px-4 relative bg-secondary/30">
-      <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-          Get In <span className="text-primary"> Touch</span>
-        </h2>
+    <section id="contact" className="relative px-4 py-24">
+      <div className="container mx-auto max-w-6xl">
+        <div className="section-shell px-6 py-10 md:px-10 md:py-14">
+          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+            <div className="text-left">
+              <span className="section-kicker">Contact</span>
+              <h2 className="mt-5 text-3xl font-semibold md:text-5xl">
+                Let&apos;s make something worth showing off.
+              </h2>
+              <p className="mt-4 max-w-xl text-base leading-7 text-muted-foreground md:text-lg">
+                If you have a project idea, internship opportunity, or just want
+                to talk about robotics, embedded systems, or software design,
+                I&apos;m always happy to connect.
+              </p>
 
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Have a project in mind or want to collaborate? Feel free to reach out.
-          I'm always open to discussing new opportunities.
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className="space-y-8">
-            <h3 className="text-2xl font-semibold mb-6">
-              {" "}
-              Contact Information
-            </h3>
-
-            <div className="space-y-6 justify-center">
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Mail className="h-6 w-6 text-primary" />{" "}
-                </div>
-                <div>
-                  <h4 className="font-medium"> Email</h4>
-                  <a
-                    href="mailto:hello@gmail.com"
-                    className="text-muted-foreground hover:text-primary transition-colors"
+              <div className="mt-8 space-y-4">
+                {contactItems.map(({ icon, label, value, href }) => (
+                  <div
+                    key={label}
+                    className="surface-card flex items-start gap-4 p-5"
                   >
-                    abrahamou2018@gmail.com
-                  </a>
-                </div>
+                    <div className="rounded-2xl bg-primary/12 p-3 text-primary">
+                      {createElement(icon, { className: "h-5 w-5" })}
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-foreground/70">
+                        {label}
+                      </h3>
+                      {href ? (
+                        <a
+                          href={href}
+                          className="mt-2 inline-block text-base text-muted-foreground transition-colors duration-300 hover:text-primary"
+                        >
+                          {value}
+                        </a>
+                      ) : (
+                        <p className="mt-2 text-base text-muted-foreground">
+                          {value}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                ))}
               </div>
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Phone className="h-6 w-6 text-primary" />{" "}
-                </div>
-                <div>
-                  <h4 className="font-medium"> Phone</h4>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                {socialLinks.map(({ icon, href, label }) => (
                   <a
-                    href="tel:+11234567890"
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={label}
+                    className="link-icon"
                   >
-                    +1 (626) 482-4787
+                    {createElement(icon, { className: "h-5 w-5" })}
                   </a>
-                </div>
-              </div>
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <MapPin className="h-6 w-6 text-primary" />{" "}
-                </div>
-                <div>
-                  <h4 className="font-medium"> Location</h4>
-                  <a className="text-muted-foreground hover:text-primary transition-colors">
-                    Irvine, CA, United States
-                  </a>
-                </div>
+                ))}
               </div>
             </div>
 
-            <div className="pt-8">
-              <h4 className="font-medium mb-4"> Connect With Me</h4>
-              <div className="flex space-x-4 justify-center">
-                <a href="https://www.linkedin.com/in/abrahamou/" target="_blank">
-                  <Linkedin />
-                </a>
-                <a href="#" target="_blank">
-                  <Twitter />
-                </a>
-                <a href="https://www.instagram.com/abrahamouu/" target="_blank">
-                  <Instagram />
-                </a>
-                <a href="#" target="_blank">
-                  <Twitch />
-                </a>
-              </div>
+            <div className="surface-card p-6 md:p-8">
+              <h3 className="text-2xl font-semibold">Send a Message</h3>
+              <p className="mt-3 max-w-lg text-sm leading-6 text-muted-foreground">
+                This demo form triggers a toast for now, but the layout is ready
+                for a real contact flow when you want to wire one up.
+              </p>
+
+              <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="mb-2 block text-sm font-medium"
+                  >
+                    Your Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    className="input-shell"
+                    placeholder="Abraham Ou"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="mb-2 block text-sm font-medium"
+                  >
+                    Your Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    className="input-shell"
+                    placeholder="abrahamou2018@gmail.com"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="message"
+                    className="mb-2 block text-sm font-medium"
+                  >
+                    Your Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows="6"
+                    className="input-shell resize-none"
+                    placeholder="Tell me a little about what you're building..."
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={cn("cosmic-button w-full")}
+                >
+                  {isSubmitting ? "Sending..." : "Send Message"}
+                  <Send size={16} />
+                </button>
+              </form>
             </div>
-          </div>
-
-          <div
-            className="bg-card p-8 rounded-lg shadow-xs"
-            onSubmit={handleSubmit}
-          >
-            <h3 className="text-2xl font-semibold mb-6"> Send a Message</h3>
-
-            <form className="space-y-6">
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium mb-2"
-                >
-                  {" "}
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
-                  placeholder="Abraham Ou..."
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium mb-2"
-                >
-                  {" "}
-                  Your Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
-                  placeholder="abrahamou2018@gmail.com"
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium mb-2"
-                >
-                  {" "}
-                  Your Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary resize-none"
-                  placeholder="Enter your message here..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={cn(
-                  "cosmic-button w-full flex items-center justify-center gap-2"
-                )}
-              >
-                {isSubmitting ? "Sending..." : "Send Message"}
-                <Send size={16} />
-              </button>
-            </form>
           </div>
         </div>
       </div>

@@ -2,94 +2,102 @@ import { Briefcase, Code, User } from "lucide-react";
 
 export const AboutSection = () => {
   return (
-    <section id="about" className="py-24 px-4 relative">
-      {" "}
-      <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          About <span className="text-primary"> Me</span>
-        </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <h3 className="text-2xl font-semibold">
-              Passionate Software Developer & Tech Creator
-            </h3>
-
-            <p className="text-muted-foreground">
-              I’ve designed everything from an IoT-based Building Management
-              System that automates HVAC and lighting using live sensor data, to
-              a five-stage pipelined MIPS processor in Verilog, and an
-              autonomous UGV (“Rovera”) with web-based telemetry and
-              software-defined radio control.
+    <section id="about" className="relative px-4 py-24">
+      <div className="container mx-auto max-w-6xl">
+        <div className="section-shell px-6 py-10 md:px-10 md:py-14">
+          <div className="mb-12 text-center">
+            <span className="section-kicker">About</span>
+            <h2 className="mt-5 text-3xl font-semibold md:text-5xl">
+              Hardware instincts. Software finish.
+            </h2>
+            <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-muted-foreground md:text-lg">
+              I enjoy projects that start with a messy technical challenge and
+              end with something tangible, elegant, and useful.
             </p>
-
-            <p className="text-muted-foreground">
-              Whether it’s optimizing embedded code, building APIs, or
-              integrating hardware with cloud services, I love tackling complex
-              problems and turning ideas into working systems that make
-              technology more intuitive and inspiring.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
-              <a href="#contact" className="cosmic-button">
-                {" "}
-                Get In Touch
-              </a>
-
-              <a
-                href=""
-                className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300"
-              >
-                Download CV
-              </a>
-            </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-6">
-            <div className="gradient-border p-6 card-hover">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Code className="h-6 w-6 text-primary" />
-                </div>
-                <div className="text-left">
-                  <h4 className="font-semibold text-lg">
-                    {" "}
-                    Software Engineering & System Design
-                  </h4>
-                  <p className="text-muted-foreground">
-                    I build scalable, reliable applications using Python, C++,
-                    and Verilog, focusing on performance and clean architecture.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="gradient-border p-6 card-hover">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <User className="h-6 w-6 text-primary" />
-                </div>
-                <div className="text-left">
-                  <h4 className="font-semibold text-lg">
-                    Embedded Systems & Hardware Integration
-                  </h4>
-                  <p className="text-muted-foreground">
-                    I design and program embedded systems that connect sensors,
-                    microcontrollers, and software to solve real-world problems.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="gradient-border p-6 card-hover">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Briefcase className="h-6 w-6 text-primary" />
-                </div>
+          <div className="grid items-start gap-10 lg:grid-cols-[1.08fr_0.92fr]">
+            <div className="space-y-6 text-left">
+              <h3 className="text-2xl font-semibold md:text-3xl">
+                I build across the stack, but I think like a systems engineer.
+              </h3>
 
-                <div className="text-left">
-                  <h4 className="font-semibold text-lg">Project Management</h4>
-                  <p className="text-muted-foreground">
-                    Leading and managing projects from design to deployment.
-                  </p>
+              <p className="text-base leading-8 text-muted-foreground">
+                I&apos;ve designed everything from an IoT building management
+                system that automates HVAC and lighting using live sensor data,
+                to a five-stage pipelined MIPS processor in Verilog, to an
+                autonomous UGV with live telemetry and software-defined radio
+                control.
+              </p>
+
+              <p className="text-base leading-8 text-muted-foreground">
+                Whether I&apos;m tuning embedded code, building APIs, or shaping
+                the front end for a project demo, I care about systems that feel
+                deliberate from end to end and hold up outside the classroom.
+              </p>
+
+              <div className="flex flex-col gap-4 pt-2 sm:flex-row">
+                <a href="#contact" className="cosmic-button">
+                  Get In Touch
+                </a>
+                <a
+                  href="/resume/AbrahamOuResumeMarch2026.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="ghost-button"
+                >
+                  Download Resume
+                </a>
+              </div>
+            </div>
+
+            <div className="grid gap-4">
+              <div className="gradient-border card-hover p-6">
+                <div className="flex items-start gap-4">
+                  <div className="rounded-2xl bg-primary/12 p-3">
+                    <Code className="h-6 w-6 text-primary" />
+                  </div>
+                  <div className="text-left">
+                    <h4 className="text-lg font-semibold">
+                      Product-minded engineering
+                    </h4>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                      I care about architecture, performance, and how the final
+                      experience actually feels to use.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="gradient-border card-hover p-6">
+                <div className="flex items-start gap-4">
+                  <div className="rounded-2xl bg-primary/12 p-3">
+                    <User className="h-6 w-6 text-primary" />
+                  </div>
+                  <div className="text-left">
+                    <h4 className="text-lg font-semibold">
+                      Embedded and hardware fluency
+                    </h4>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                      I like working close to the metal, especially when sensors,
+                      controls, and firmware need to coordinate cleanly.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="gradient-border card-hover p-6">
+                <div className="flex items-start gap-4">
+                  <div className="rounded-2xl bg-primary/12 p-3">
+                    <Briefcase className="h-6 w-6 text-primary" />
+                  </div>
+                  <div className="text-left">
+                    <h4 className="text-lg font-semibold">Strong ownership</h4>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                      I enjoy taking projects from concept through debugging,
+                      iteration, and the final polished presentation.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
