@@ -20,11 +20,13 @@ import {
   Linkedin,
   Mail,
   MapPin,
+  Monitor,
   Phone,
   Power,
   Rocket,
   RotateCw,
   Send,
+  Smartphone,
   User,
   Wrench,
   X,
@@ -133,11 +135,14 @@ const getAppUrl = (appId) => {
 
 export const SystemPortfolio = () => {
   const { toast } = useToast();
+  const [deviceMode, setDeviceMode] = useState("mac");
   const [systemStage, setSystemStage] = useState("off");
   const [activeApp, setActiveApp] = useState(null);
   const [isDesktopIconsMinimized, setIsDesktopIconsMinimized] = useState(false);
   const [isDockMinimized, setIsDockMinimized] = useState(false);
   const [isPowerKeyAnimating, setIsPowerKeyAnimating] = useState(false);
+  const [isPhoneUnlocked, setIsPhoneUnlocked] = useState(false);
+  const [phoneActiveApp, setPhoneActiveApp] = useState(null);
   const [visibleBootLines, setVisibleBootLines] = useState(0);
   const [clock, setClock] = useState(() => new Date());
   const [profileFailed, setProfileFailed] = useState(false);
@@ -257,6 +262,26 @@ export const SystemPortfolio = () => {
     setActiveApp(null);
   };
 
+  const handleUnlockPhone = () => {
+    setIsPhoneUnlocked(true);
+  };
+
+  const handleOpenPhoneApp = (appId) => {
+    if (!isPhoneUnlocked) {
+      setIsPhoneUnlocked(true);
+    }
+
+    setPhoneActiveApp(appId);
+  };
+
+  const handlePhoneHome = () => {
+    if (!isPhoneUnlocked) {
+      return;
+    }
+
+    setPhoneActiveApp(null);
+  };
+
   const handleContactSubmit = (event) => {
     event.preventDefault();
     event.currentTarget.reset();
@@ -282,6 +307,14 @@ export const SystemPortfolio = () => {
     systemStage === "off" ? "Power on laptop" : "Power down laptop";
   const powerKeyHint =
     systemStage === "off" ? "Tap to power on" : "Tap to turn off";
+  const heroTitle =
+    deviceMode === "mac"
+      ? "Power on the laptop and explore the site like a desktop."
+      : "Tap to unlock and explore the same portfolio like an iPhone.";
+  const heroDescription =
+    deviceMode === "mac"
+      ? "The main visual is now the laptop itself. Press the power key on the keyboard, wait for the boot sequence, then open apps like `experience`, `skills`, `projects`, `resume`, `contact`, and `links` right inside the screen."
+      : "This mobile version keeps the same apps, links, and sections, but inside an iPhone-style home screen. Tap to unlock, open apps, and use the home button to jump back to your app grid.";
 
   return (
     <div className="system-shell min-h-screen overflow-hidden bg-background text-foreground">
@@ -303,131 +336,169 @@ export const SystemPortfolio = () => {
             </div>
 
             <h1 className="mt-5 text-4xl font-semibold tracking-[-0.06em] text-white sm:text-5xl lg:text-6xl">
-              Power on the laptop and explore the site like a desktop.
+              {heroTitle}
             </h1>
 
             <p className="mx-auto mt-4 max-w-3xl text-sm leading-7 text-slate-300 sm:text-base">
-              The main visual is now the laptop itself. Press the power key on
-              the keyboard, wait for the boot sequence, then open apps like
-              `experience`, `skills`, `projects`, `resume`, `contact`, and
-              `links` right inside the screen.
+              {heroDescription}
             </p>
           </header>
 
           <section className="system-panel w-full max-w-7xl p-4 md:p-6 xl:p-8">
-            <div className="macbook-scene">
-              <div className="macbook-unit">
-                <div className="macbook-lid macbook-lid-open">
-                  <div className="macbook-camera" />
-                  <div className="macbook-screen">
-                    <ScreenState
-                      systemStage={systemStage}
-                      activeApp={activeApp}
-                      currentApp={currentApp}
-                      formattedClock={formattedClock}
-                      visibleBootLines={visibleBootLines}
-                      onOpenApp={handleOpenApp}
-                      onCloseApp={handleCloseApp}
-                      isDesktopIconsMinimized={isDesktopIconsMinimized}
-                      onToggleDesktopIcons={() =>
-                        setIsDesktopIconsMinimized((currentValue) => !currentValue)
-                      }
-                      isDockMinimized={isDockMinimized}
-                      onToggleDock={() =>
-                        setIsDockMinimized((currentValue) => !currentValue)
-                      }
-                      onContactSubmit={handleContactSubmit}
-                      profileFailed={profileFailed}
-                      onProfileError={() => setProfileFailed(true)}
-                    />
-                    <div className="screen-reflection" />
-                  </div>
-                </div>
-
-                <div className="macbook-base">
-                  <div className="macbook-hinge" />
-                  <div className="keyboard-surface" />
-                  <div className="power-control">
-                    <button
-                      type="button"
-                      onClick={handlePowerKey}
-                      className={cn(
-                        "power-key",
-                        systemStage !== "off" && "power-key-active",
-                        isPowerKeyAnimating && "power-key-pressing"
-                      )}
-                      aria-label={powerActionLabel}
-                    >
-                      <Power className="h-4 w-4" />
-                    </button>
-                    <span className="power-key-tooltip">{powerKeyHint}</span>
-                  </div>
-                  <div
-                    className={cn(
-                      "power-led",
-                      systemStage !== "off" && "power-led-active",
-                      isPowerKeyAnimating && "power-led-pressing"
-                    )}
-                    aria-hidden="true"
-                  />
-                  <div className="trackpad-surface" />
-                </div>
-                <button
-                  type="button"
-                  onClick={handlePowerKey}
-                  className={cn(
-                    "power-side-button",
-                    systemStage !== "off" && "power-side-button-active",
-                    isPowerKeyAnimating && "power-side-button-pressing"
-                  )}
-                  aria-label={powerActionLabel}
-                >
-                  <Power className="h-4 w-4" />
-                  <span className="power-side-button-text">Power</span>
-                </button>
-              </div>
-
-              <div className="laptop-meta-row mt-6 flex w-full flex-wrap items-center justify-between gap-3">
-                <div className="laptop-meta-status flex flex-wrap gap-3">
-                  <span className="status-pill">{stageLabel}</span>
-                  <span className="status-pill">
-                    press keyboard power key to boot
-                  </span>
-                </div>
-
-                <div className="laptop-meta-actions flex flex-wrap gap-3">
-                  {systemStage === "ready" && (
-                    <>
-                      <button
-                        type="button"
-                        onClick={() => setActiveApp(null)}
-                        className="system-button-ghost"
-                      >
-                        Desktop
-                      </button>
-                      <button
-                        type="button"
-                        onClick={handleReboot}
-                        className="system-button-ghost"
-                      >
-                        <RotateCw className="h-4 w-4" />
-                        Reboot
-                      </button>
-                    </>
-                  )}
-
-                  <a
-                    href={resumeUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="system-button-ghost"
-                  >
-                    <FileText className="h-4 w-4" />
-                    Resume PDF
-                  </a>
-                </div>
-              </div>
+            <div className="device-switcher">
+              <button
+                type="button"
+                onClick={() => setDeviceMode("mac")}
+                className={cn(
+                  "device-switch-button",
+                  deviceMode === "mac" && "device-switch-button-active"
+                )}
+                aria-pressed={deviceMode === "mac"}
+              >
+                <Monitor className="h-4 w-4" />
+                Mac
+              </button>
+              <button
+                type="button"
+                onClick={() => setDeviceMode("iphone")}
+                className={cn(
+                  "device-switch-button",
+                  deviceMode === "iphone" && "device-switch-button-active"
+                )}
+                aria-pressed={deviceMode === "iphone"}
+              >
+                <Smartphone className="h-4 w-4" />
+                iPhone
+              </button>
             </div>
+
+            {deviceMode === "mac" ? (
+              <div className="macbook-scene">
+                <div className="macbook-unit">
+                  <div className="macbook-lid macbook-lid-open">
+                    <div className="macbook-camera" />
+                    <div className="macbook-screen">
+                      <ScreenState
+                        systemStage={systemStage}
+                        activeApp={activeApp}
+                        currentApp={currentApp}
+                        formattedClock={formattedClock}
+                        visibleBootLines={visibleBootLines}
+                        onOpenApp={handleOpenApp}
+                        onCloseApp={handleCloseApp}
+                        isDesktopIconsMinimized={isDesktopIconsMinimized}
+                        onToggleDesktopIcons={() =>
+                          setIsDesktopIconsMinimized((currentValue) => !currentValue)
+                        }
+                        isDockMinimized={isDockMinimized}
+                        onToggleDock={() =>
+                          setIsDockMinimized((currentValue) => !currentValue)
+                        }
+                        onContactSubmit={handleContactSubmit}
+                        profileFailed={profileFailed}
+                        onProfileError={() => setProfileFailed(true)}
+                      />
+                      <div className="screen-reflection" />
+                    </div>
+                  </div>
+
+                  <div className="macbook-base">
+                    <div className="macbook-hinge" />
+                    <div className="keyboard-surface" />
+                    <div className="power-control">
+                      <button
+                        type="button"
+                        onClick={handlePowerKey}
+                        className={cn(
+                          "power-key",
+                          systemStage !== "off" && "power-key-active",
+                          isPowerKeyAnimating && "power-key-pressing"
+                        )}
+                        aria-label={powerActionLabel}
+                      >
+                        <Power className="h-4 w-4" />
+                      </button>
+                      <span className="power-key-tooltip">{powerKeyHint}</span>
+                    </div>
+                    <div
+                      className={cn(
+                        "power-led",
+                        systemStage !== "off" && "power-led-active",
+                        isPowerKeyAnimating && "power-led-pressing"
+                      )}
+                      aria-hidden="true"
+                    />
+                    <div className="trackpad-surface" />
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handlePowerKey}
+                    className={cn(
+                      "power-side-button",
+                      systemStage !== "off" && "power-side-button-active",
+                      isPowerKeyAnimating && "power-side-button-pressing"
+                    )}
+                    aria-label={powerActionLabel}
+                  >
+                    <Power className="h-4 w-4" />
+                    <span className="power-side-button-text">Power</span>
+                  </button>
+                </div>
+
+                <div className="laptop-meta-row mt-6 flex w-full flex-wrap items-center justify-between gap-3">
+                  <div className="laptop-meta-status flex flex-wrap gap-3">
+                    <span className="status-pill">{stageLabel}</span>
+                    <span className="status-pill">
+                      press keyboard power key to boot
+                    </span>
+                  </div>
+
+                  <div className="laptop-meta-actions flex flex-wrap gap-3">
+                    {systemStage === "ready" && (
+                      <>
+                        <button
+                          type="button"
+                          onClick={() => setActiveApp(null)}
+                          className="system-button-ghost"
+                        >
+                          Desktop
+                        </button>
+                        <button
+                          type="button"
+                          onClick={handleReboot}
+                          className="system-button-ghost"
+                        >
+                          <RotateCw className="h-4 w-4" />
+                          Reboot
+                        </button>
+                      </>
+                    )}
+
+                    <a
+                      href={resumeUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="system-button-ghost"
+                    >
+                      <FileText className="h-4 w-4" />
+                      Resume PDF
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <PhoneShowcase
+                formattedClock={formattedClock}
+                isPhoneUnlocked={isPhoneUnlocked}
+                activeApp={phoneActiveApp}
+                onUnlockPhone={handleUnlockPhone}
+                onOpenApp={handleOpenPhoneApp}
+                onHome={handlePhoneHome}
+                onContactSubmit={handleContactSubmit}
+                profileFailed={profileFailed}
+                onProfileError={() => setProfileFailed(true)}
+              />
+            )}
           </section>
 
           <footer className="pb-3 text-center font-mono text-[0.68rem] uppercase tracking-[0.26em] text-slate-500">
@@ -524,6 +595,150 @@ const ScreenState = ({
       profileFailed={profileFailed}
       onProfileError={onProfileError}
     />
+  );
+};
+
+const PhoneShowcase = ({
+  formattedClock,
+  isPhoneUnlocked,
+  activeApp,
+  onUnlockPhone,
+  onOpenApp,
+  onHome,
+  onContactSubmit,
+  profileFailed,
+  onProfileError,
+}) => {
+  const currentPhoneApp =
+    desktopApps.find(({ id }) => id === activeApp) ?? null;
+
+  return (
+    <div className="iphone-scene">
+      <div className="iphone-device">
+        <div className="iphone-frame">
+          <div className="iphone-screen-shell">
+            <div className="iphone-notch" />
+            <div className="iphone-status-bar">
+              <span>abraham.ou</span>
+              <span>{formattedClock}</span>
+            </div>
+
+            {!isPhoneUnlocked ? (
+              <button
+                type="button"
+                onClick={onUnlockPhone}
+                className="iphone-lock-screen"
+                aria-label="Tap to unlock iPhone portfolio"
+              >
+                <div className="iphone-lock-time">{formattedClock}</div>
+                <div className="iphone-lock-title">Tap to unlock</div>
+                <div className="iphone-lock-subtitle">
+                  Use your cursor or finger to enter the mobile portfolio.
+                </div>
+                <div className="iphone-unlock-indicator" aria-hidden="true" />
+              </button>
+            ) : activeApp && currentPhoneApp ? (
+              <div className="iphone-app-shell">
+                <div className="iphone-app-header">
+                  <div>
+                    <p className="window-title">{currentPhoneApp.label}.app</p>
+                    <p className="mt-1 text-[0.72rem] text-slate-400">
+                      {currentPhoneApp.summary}
+                    </p>
+                  </div>
+                </div>
+                <div className="panel-scroll iphone-app-body">
+                  {renderAppContent({
+                    activeApp,
+                    onContactSubmit,
+                    profileFailed,
+                    onProfileError,
+                  })}
+                </div>
+              </div>
+            ) : (
+              <div className="iphone-home-screen">
+                <div className="iphone-home-copy">
+                  <p className="font-mono text-[0.62rem] uppercase tracking-[0.28em] text-cyan-300/75">
+                    Mobile Home
+                  </p>
+                  <h2 className="mt-2 text-xl font-semibold text-white">
+                    Open the same portfolio as phone apps.
+                  </h2>
+                  <p className="mt-2 text-sm leading-6 text-slate-300">
+                    Tap an app below, then use the home button to get back to
+                    this screen.
+                  </p>
+                </div>
+
+                <div className="iphone-app-grid">
+                  {desktopApps.map((app) => {
+                    const Icon = app.icon;
+
+                    return (
+                      <button
+                        key={app.id}
+                        type="button"
+                        onClick={() => onOpenApp(app.id)}
+                        className="iphone-app-icon"
+                      >
+                        <span className="iphone-app-glyph">
+                          <Icon className="h-5 w-5" />
+                        </span>
+                        <span className="iphone-app-name">{app.label}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <div className="iphone-app-dock">
+                  {dockAppIds.map((appId) => {
+                    const app = desktopApps.find((item) => item.id === appId);
+                    if (!app) {
+                      return null;
+                    }
+
+                    const Icon = app.icon;
+
+                    return (
+                      <button
+                        key={app.id}
+                        type="button"
+                        onClick={() => onOpenApp(app.id)}
+                        className="iphone-dock-icon"
+                        aria-label={`Open ${app.label}`}
+                      >
+                        <Icon className="h-5 w-5" />
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+
+          <button
+            type="button"
+            onClick={onHome}
+            className="iphone-home-button"
+            aria-label="Go to iPhone home screen"
+          >
+            <span className="iphone-home-button-ring" />
+          </button>
+        </div>
+      </div>
+
+      <div className="iphone-meta-row">
+        <span className="status-pill">
+          {isPhoneUnlocked
+            ? activeApp
+              ? `${currentPhoneApp?.label ?? "app"} open`
+              : "iphone unlocked"
+            : "tap to unlock"}
+        </span>
+        <span className="status-pill">same links, apps, and portfolio sections</span>
+      </div>
+    </div>
   );
 };
 
