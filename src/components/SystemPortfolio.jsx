@@ -278,8 +278,10 @@ export const SystemPortfolio = () => {
     booting: "booting",
     ready: activeApp ? `${currentApp?.label} open` : "desktop ready",
   }[systemStage];
+  const powerActionLabel =
+    systemStage === "off" ? "Power on laptop" : "Power down laptop";
   const powerKeyHint =
-    systemStage === "off" ? "Click to power on" : "Click to turn off";
+    systemStage === "off" ? "Tap to power on" : "Tap to turn off";
 
   return (
     <div className="system-shell min-h-screen overflow-hidden bg-background text-foreground">
@@ -354,11 +356,7 @@ export const SystemPortfolio = () => {
                         systemStage !== "off" && "power-key-active",
                         isPowerKeyAnimating && "power-key-pressing"
                       )}
-                      aria-label={
-                        systemStage === "off"
-                          ? "Power on laptop"
-                          : "Power down laptop"
-                      }
+                      aria-label={powerActionLabel}
                     >
                       <Power className="h-4 w-4" />
                     </button>
@@ -374,17 +372,30 @@ export const SystemPortfolio = () => {
                   />
                   <div className="trackpad-surface" />
                 </div>
+                <button
+                  type="button"
+                  onClick={handlePowerKey}
+                  className={cn(
+                    "power-side-button",
+                    systemStage !== "off" && "power-side-button-active",
+                    isPowerKeyAnimating && "power-side-button-pressing"
+                  )}
+                  aria-label={powerActionLabel}
+                >
+                  <Power className="h-4 w-4" />
+                  <span className="power-side-button-text">Power</span>
+                </button>
               </div>
 
-              <div className="mt-6 flex w-full flex-wrap items-center justify-between gap-3">
-                <div className="flex flex-wrap gap-3">
+              <div className="laptop-meta-row mt-6 flex w-full flex-wrap items-center justify-between gap-3">
+                <div className="laptop-meta-status flex flex-wrap gap-3">
                   <span className="status-pill">{stageLabel}</span>
                   <span className="status-pill">
                     press keyboard power key to boot
                   </span>
                 </div>
 
-                <div className="flex flex-wrap gap-3">
+                <div className="laptop-meta-actions flex flex-wrap gap-3">
                   {systemStage === "ready" && (
                     <>
                       <button
@@ -533,7 +544,7 @@ const DesktopEnvironment = ({
   return (
     <div className="desktop-shell">
       <div className="desktop-topbar">
-        <div className="flex items-center gap-3">
+        <div className="desktop-brand-row flex items-center gap-3">
           <span className="text-sm font-semibold text-slate-100">
             abraham.ou
           </span>
@@ -542,7 +553,7 @@ const DesktopEnvironment = ({
           </span>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="desktop-control-row flex items-center gap-2">
           <button
             type="button"
             onClick={onToggleDesktopIcons}
@@ -790,6 +801,8 @@ const renderAppContent = ({
 };
 
 const AboutModule = ({ profileFailed, onProfileError }) => {
+  const [profileLoaded, setProfileLoaded] = useState(false);
+
   return (
     <div className="space-y-5">
       <ModuleHeader
@@ -800,7 +813,7 @@ const AboutModule = ({ profileFailed, onProfileError }) => {
 
       <div className="grid gap-5 xl:grid-cols-[0.84fr_1.16fr]">
         <div className="module-card p-4">
-          <div className="overflow-hidden rounded-[24px] border border-cyan-400/15 bg-[radial-gradient(circle_at_20%_20%,rgba(34,211,238,0.14),transparent_30%),linear-gradient(180deg,rgba(15,23,42,0.94),rgba(2,6,23,0.98))]">
+          <div className="profile-image-shell overflow-hidden rounded-[24px] border border-cyan-400/15 bg-[radial-gradient(circle_at_20%_20%,rgba(34,211,238,0.14),transparent_30%),linear-gradient(180deg,rgba(15,23,42,0.94),rgba(2,6,23,0.98))]">
             {profileFailed ? (
               <div className="flex aspect-[4/5] items-center justify-center px-6 text-center">
                 <div>
@@ -813,12 +826,22 @@ const AboutModule = ({ profileFailed, onProfileError }) => {
                 </div>
               </div>
             ) : (
-              <img
-                src={profileImagePath}
-                alt="Portrait of Abraham Ou"
-                className="aspect-[4/5] w-full object-cover"
-                onError={onProfileError}
-              />
+              <>
+                {!profileLoaded && <div className="profile-image-shimmer" aria-hidden="true" />}
+                <img
+                  src={profileImagePath}
+                  alt="Portrait of Abraham Ou"
+                  className={cn(
+                    "profile-image aspect-[4/5] w-full object-cover",
+                    profileLoaded && "profile-image-loaded"
+                  )}
+                  onLoad={() => setProfileLoaded(true)}
+                  onError={() => {
+                    setProfileLoaded(false);
+                    onProfileError();
+                  }}
+                />
+              </>
             )}
           </div>
         </div>
