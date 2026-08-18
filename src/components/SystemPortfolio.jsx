@@ -1,3 +1,4 @@
+import { useLayoutEffect, useState } from "react";
 import {
   ArrowUpRight,
   Cpu,
@@ -6,9 +7,11 @@ import {
   Linkedin,
   Mail,
   MapPin,
+  Moon,
   Phone,
   Radar,
   Shield,
+  Sun,
   Workflow,
 } from "lucide-react";
 import {
@@ -41,6 +44,20 @@ const contactIcons = {
 const experienceIcons = [Cpu, Workflow, Shield];
 
 export const SystemPortfolio = () => {
+  const [theme, setTheme] = useState(() => {
+    if (typeof window === "undefined") {
+      return "dark";
+    }
+
+    const storedTheme = window.localStorage.getItem("theme");
+    return storedTheme === "light" ? "light" : "dark";
+  });
+
+  useLayoutEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    window.localStorage.setItem("theme", theme);
+  }, [theme]);
+
   return (
     <div className="portfolio-shell">
       <div className="page-glow page-glow-left" />
@@ -52,13 +69,46 @@ export const SystemPortfolio = () => {
             Abraham Ou
           </a>
 
-          <nav className="flex flex-wrap items-center gap-2 reveal delay-1">
-            {navLinks.map((link) => (
-              <a key={link.href} href={link.href} className="nav-link">
-                {link.label}
-              </a>
-            ))}
-          </nav>
+          <div className="flex flex-wrap items-center gap-2 reveal delay-1">
+            <nav className="flex flex-wrap items-center gap-2">
+              {navLinks.map((link) => (
+                <a key={link.href} href={link.href} className="nav-link">
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+
+            <button
+              type="button"
+              onClick={() =>
+                setTheme((currentTheme) =>
+                  currentTheme === "dark" ? "light" : "dark"
+                )
+              }
+              className="theme-toggle"
+              aria-label={`Switch to ${
+                theme === "dark" ? "light" : "dark"
+              } mode`}
+              aria-pressed={theme === "dark"}
+            >
+              <span className="theme-toggle-track">
+                <span
+                  className={`theme-toggle-thumb ${
+                    theme === "dark" ? "theme-toggle-thumb-dark" : ""
+                  }`}
+                >
+                  {theme === "dark" ? (
+                    <Moon className="h-4 w-4" />
+                  ) : (
+                    <Sun className="h-4 w-4" />
+                  )}
+                </span>
+              </span>
+              <span className="theme-toggle-label">
+                {theme === "dark" ? "Dark" : "Light"}
+              </span>
+            </button>
+          </div>
         </div>
       </header>
 
@@ -112,7 +162,7 @@ export const SystemPortfolio = () => {
               <p className="card-meta mt-2">{profileCard.company}</p>
               <p className="card-copy mt-4">{profileCard.note}</p>
 
-              <div className="mt-5 inline-flex items-center gap-2 text-sm text-slate-400">
+              <div className="muted-inline mt-5 inline-flex items-center gap-2 text-sm">
                 <MapPin className="h-4 w-4" />
                 {profileCard.location}
               </div>
@@ -278,7 +328,7 @@ export const SystemPortfolio = () => {
         </section>
       </main>
 
-      <footer className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-5 pb-8 text-xs uppercase tracking-[0.22em] text-slate-500 md:px-8 lg:px-10">
+      <footer className="footer-row mx-auto flex max-w-6xl items-center justify-between gap-3 px-5 pb-8 text-xs uppercase tracking-[0.22em] md:px-8 lg:px-10">
         <span>Abraham Ou</span>
         <span>Embedded Software Engineer</span>
       </footer>
