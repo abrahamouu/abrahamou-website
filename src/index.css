@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -19,89 +19,47 @@
   --color-destructive: hsl(var(--destructive));
   --color-destructive-foreground: hsl(var(--destructive-foreground));
 
-  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-sans: "Manrope", sans-serif;
   --font-display: "Space Grotesk", sans-serif;
-  --font-mono: "IBM Plex Mono", monospace;
 
-  @keyframes drift {
-    0%,
-    100% {
-      transform: translate3d(0, 0, 0) scale(1);
-    }
-
-    33% {
-      transform: translate3d(2rem, -1.2rem, 0) scale(1.05);
-    }
-
-    66% {
-      transform: translate3d(-1.6rem, 1.4rem, 0) scale(0.96);
-    }
-  }
-
-  @keyframes pulse-ring {
-    0%,
-    100% {
-      box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.2);
-    }
-
-    50% {
-      box-shadow: 0 0 0 14px rgba(34, 211, 238, 0);
-    }
-  }
-
-  @keyframes cursor-blink {
-    0%,
-    45% {
-      opacity: 1;
-    }
-
-    50%,
-    100% {
-      opacity: 0;
-    }
-  }
-
-  @keyframes power-key-press {
+  @keyframes fade-up {
     0% {
-      transform: translateY(0) scale(1);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.05),
-        0 10px 24px rgba(2, 6, 23, 0.22);
-    }
-
-    35% {
-      transform: translateY(1px) scale(0.94);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.04),
-        0 4px 12px rgba(2, 6, 23, 0.18);
+      opacity: 0;
+      transform: translateY(20px);
     }
 
     100% {
-      transform: translateY(0) scale(1);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.05),
-        0 10px 24px rgba(2, 6, 23, 0.22);
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 
-  @keyframes power-led-flash {
+  @keyframes pulse-orb {
     0%,
     100% {
       transform: scale(1);
+      opacity: 0.9;
     }
 
     50% {
-      transform: scale(1.35);
+      transform: scale(1.08);
+      opacity: 1;
     }
   }
 
-  @keyframes profile-shimmer {
+  @keyframes shine-line {
     0% {
-      background-position: 200% 0;
+      transform: translateX(-120%);
+      opacity: 0;
+    }
+
+    25% {
+      opacity: 1;
     }
 
     100% {
-      background-position: -200% 0;
+      transform: translateX(220%);
+      opacity: 0;
     }
   }
 }
@@ -110,27 +68,27 @@
   :root,
   .dark {
     color-scheme: dark;
-    --background: 223 58% 7%;
-    --foreground: 210 40% 96%;
-    --card: 222 42% 11%;
-    --primary: 191 96% 63%;
-    --primary-foreground: 223 58% 10%;
-    --secondary: 221 30% 18%;
-    --secondary-foreground: 210 35% 94%;
-    --muted: 222 26% 15%;
-    --muted-foreground: 215 18% 68%;
-    --accent: 216 72% 28%;
-    --accent-foreground: 210 40% 96%;
-    --border: 218 26% 22%;
-    --input: 218 22% 20%;
-    --ring: 191 96% 63%;
-    --destructive: 0 70% 52%;
+    --background: 220 30% 7%;
+    --foreground: 210 33% 96%;
+    --card: 220 26% 10%;
+    --primary: 199 92% 66%;
+    --primary-foreground: 221 39% 10%;
+    --secondary: 220 18% 15%;
+    --secondary-foreground: 210 33% 96%;
+    --muted: 220 16% 16%;
+    --muted-foreground: 215 14% 68%;
+    --accent: 221 20% 18%;
+    --accent-foreground: 210 33% 96%;
+    --border: 220 17% 20%;
+    --input: 220 17% 20%;
+    --ring: 199 92% 66%;
+    --destructive: 0 68% 52%;
     --destructive-foreground: 0 0% 100%;
   }
 
   * {
-    border-color: hsl(var(--border));
     box-sizing: border-box;
+    border-color: hsl(var(--border));
   }
 
   html {
@@ -140,10 +98,9 @@
   body {
     min-height: 100vh;
     background:
-      radial-gradient(circle at 15% 18%, rgba(34, 211, 238, 0.12), transparent 26%),
-      radial-gradient(circle at 82% 12%, rgba(59, 130, 246, 0.16), transparent 24%),
-      radial-gradient(circle at 50% 120%, rgba(56, 189, 248, 0.08), transparent 36%),
-      linear-gradient(180deg, rgba(3, 7, 18, 1), rgba(4, 10, 24, 1) 45%, rgba(2, 6, 23, 1));
+      radial-gradient(circle at 12% 16%, rgba(56, 189, 248, 0.12), transparent 22%),
+      radial-gradient(circle at 86% 14%, rgba(255, 255, 255, 0.05), transparent 16%),
+      linear-gradient(180deg, #06080d 0%, #0a0f18 42%, #06080d 100%);
     color: hsl(var(--foreground));
     font-family: var(--font-sans);
     font-feature-settings: "rlig" 1, "calt" 1;
@@ -153,13 +110,27 @@
     min-height: 100vh;
   }
 
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
   h1,
   h2,
   h3,
   h4,
   .font-display {
     font-family: var(--font-display);
-    letter-spacing: -0.04em;
+    letter-spacing: -0.05em;
   }
 
   :where(a, button, input, textarea):focus-visible {
@@ -168,461 +139,155 @@
   }
 
   ::selection {
-    background: rgba(34, 211, 238, 0.28);
+    background: rgba(56, 189, 248, 0.24);
+    color: #ffffff;
   }
 }
 
 @layer components {
-  .system-shell {
+  .portfolio-shell {
     position: relative;
     isolation: isolate;
+    overflow: hidden;
   }
 
-  .system-grid {
-    position: absolute;
+  .portfolio-shell::before {
+    content: "";
+    position: fixed;
     inset: 0;
     background-image:
-      linear-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+      linear-gradient(rgba(148, 163, 184, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 163, 184, 0.04) 1px, transparent 1px);
     background-size: 72px 72px;
-    opacity: 0.36;
-    mask-image: radial-gradient(circle at center, black 28%, transparent 84%);
-    -webkit-mask-image: radial-gradient(circle at center, black 28%, transparent 84%);
+    opacity: 0.28;
+    pointer-events: none;
+    mask-image: radial-gradient(circle at center, black 24%, transparent 78%);
+    -webkit-mask-image: radial-gradient(circle at center, black 24%, transparent 78%);
   }
 
-  .system-orb {
-    position: absolute;
-    border-radius: 999px;
-    filter: blur(90px);
-    opacity: 0.8;
-    animation: drift 18s ease-in-out infinite;
-  }
-
-  .system-orb-one {
-    left: -8rem;
-    top: 1rem;
-    height: 22rem;
-    width: 22rem;
-    background: rgba(34, 211, 238, 0.18);
-  }
-
-  .system-orb-two {
-    right: -6rem;
-    top: 16%;
-    height: 20rem;
-    width: 20rem;
-    background: rgba(59, 130, 246, 0.22);
-    animation-duration: 22s;
-  }
-
-  .system-orb-three {
-    bottom: -10rem;
-    left: 40%;
-    height: 24rem;
+  .page-glow {
+    position: fixed;
     width: 24rem;
-    background: rgba(14, 165, 233, 0.12);
-    animation-duration: 24s;
-  }
-
-  .system-panel {
-    border: 1px solid rgba(148, 163, 184, 0.14);
-    border-radius: 2rem;
-    background: linear-gradient(180deg, rgba(15, 23, 42, 0.82), rgba(2, 6, 23, 0.72));
-    box-shadow:
-      0 30px 90px rgba(2, 6, 23, 0.42),
-      inset 0 1px 0 rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(26px);
-  }
-
-  .status-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
-    padding: 0.62rem 0.9rem;
-    border: 1px solid rgba(34, 211, 238, 0.16);
+    height: 24rem;
     border-radius: 999px;
-    background: rgba(15, 23, 42, 0.65);
-    color: rgba(186, 230, 253, 0.88);
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
+    filter: blur(110px);
+    pointer-events: none;
+    animation: pulse-orb 10s ease-in-out infinite;
   }
 
-  .system-button,
-  .system-button-ghost,
-  .system-shortcut,
-  .module-button,
-  .disabled-link {
-    transition:
-      transform 220ms ease,
-      border-color 220ms ease,
-      background 220ms ease,
-      color 220ms ease,
-      box-shadow 220ms ease;
+  .page-glow-left {
+    left: -7rem;
+    top: 3rem;
+    background: rgba(56, 189, 248, 0.12);
   }
 
-  .system-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.55rem;
-    padding: 0.9rem 1.2rem;
-    border: 1px solid rgba(34, 211, 238, 0.28);
-    border-radius: 999px;
-    background: linear-gradient(135deg, rgba(34, 211, 238, 0.95), rgba(96, 165, 250, 0.95));
-    color: rgba(2, 6, 23, 0.96);
-    font-size: 0.92rem;
+  .page-glow-right {
+    right: -8rem;
+    top: 12rem;
+    background: rgba(59, 130, 246, 0.09);
+    animation-delay: 1.4s;
+  }
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(18px);
+    background: linear-gradient(180deg, rgba(6, 8, 13, 0.9), rgba(6, 8, 13, 0.35));
+  }
+
+  .brand-mark {
+    color: #ffffff;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
     font-weight: 700;
-    box-shadow: 0 18px 36px rgba(34, 211, 238, 0.18);
+    letter-spacing: -0.04em;
   }
 
-  .system-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 24px 44px rgba(34, 211, 238, 0.22);
-  }
-
-  .system-button-ghost {
+  .nav-link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.55rem;
-    padding: 0.9rem 1.2rem;
-    border: 1px solid rgba(148, 163, 184, 0.16);
-    border-radius: 999px;
-    background: rgba(15, 23, 42, 0.56);
-    color: rgba(226, 232, 240, 0.92);
-    font-size: 0.92rem;
-    font-weight: 700;
-  }
-
-  .system-button-ghost:hover {
-    transform: translateY(-2px);
-    border-color: rgba(34, 211, 238, 0.28);
-    background: rgba(8, 47, 73, 0.35);
-    color: rgba(186, 230, 253, 0.95);
-  }
-
-  .data-card {
-    border: 1px solid rgba(148, 163, 184, 0.12);
-    border-radius: 1.4rem;
-    padding: 1rem;
-    background: rgba(2, 6, 23, 0.45);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
-  }
-
-  .chip-pill {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.45rem 0.72rem;
-    border: 1px solid rgba(34, 211, 238, 0.14);
-    border-radius: 999px;
-    background: rgba(8, 47, 73, 0.3);
-    color: rgba(186, 230, 253, 0.88);
-    font-size: 0.78rem;
-    font-weight: 600;
-  }
-
-  .system-shortcut {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 1.1rem 1.2rem;
-    border: 1px solid rgba(148, 163, 184, 0.14);
-    border-radius: 1.5rem;
-    background: linear-gradient(180deg, rgba(15, 23, 42, 0.72), rgba(2, 6, 23, 0.76));
-    color: rgba(226, 232, 240, 0.92);
-    text-align: left;
-  }
-
-  .system-shortcut:hover {
-    transform: translateY(-2px);
-    border-color: rgba(34, 211, 238, 0.24);
-    background: linear-gradient(180deg, rgba(15, 23, 42, 0.82), rgba(8, 47, 73, 0.45));
-  }
-
-  .module-card {
-    border: 1px solid rgba(148, 163, 184, 0.12);
-    border-radius: 1.75rem;
-    background: linear-gradient(180deg, rgba(15, 23, 42, 0.84), rgba(2, 6, 23, 0.86));
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.03),
-      0 18px 40px rgba(2, 6, 23, 0.26);
-  }
-
-  .module-button {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.9rem;
-    padding: 0.9rem;
-    border: 1px solid rgba(148, 163, 184, 0.1);
-    border-radius: 1.25rem;
-    background: rgba(2, 6, 23, 0.4);
-    color: rgba(226, 232, 240, 0.92);
-    text-align: left;
-  }
-
-  .module-button:hover {
-    transform: translateY(-1px);
-    border-color: rgba(34, 211, 238, 0.22);
-    background: rgba(8, 47, 73, 0.32);
-  }
-
-  .module-button-active {
-    border-color: rgba(34, 211, 238, 0.32);
-    background: linear-gradient(135deg, rgba(8, 47, 73, 0.52), rgba(15, 23, 42, 0.72));
-    box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.08);
-  }
-
-  .form-label {
-    display: block;
-    margin-bottom: 0.55rem;
-    color: rgba(226, 232, 240, 0.92);
-    font-size: 0.86rem;
-    font-weight: 600;
-  }
-
-  .input-shell {
-    width: 100%;
-    padding: 0.9rem 1rem;
-    border: 1px solid rgba(148, 163, 184, 0.16);
-    border-radius: 1rem;
-    background: rgba(2, 6, 23, 0.65);
-    color: hsl(var(--foreground));
-    font-size: 0.95rem;
-  }
-
-  .input-shell::placeholder {
-    color: rgba(148, 163, 184, 0.7);
-  }
-
-  .input-shell:hover,
-  .input-shell:focus {
-    border-color: rgba(34, 211, 238, 0.26);
-    background: rgba(8, 47, 73, 0.28);
-  }
-
-  .disabled-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.65rem;
-    padding: 0.85rem 1rem;
-    border: 1px dashed rgba(148, 163, 184, 0.18);
-    border-radius: 999px;
-    background: rgba(15, 23, 42, 0.44);
-    color: rgba(148, 163, 184, 0.92);
-    cursor: not-allowed;
-  }
-
-  .device-switcher {
-    display: inline-flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.75rem;
-    margin: 0 auto 1.4rem;
-    padding: 0.5rem;
-    border: 1px solid rgba(148, 163, 184, 0.14);
-    border-radius: 999px;
-    background: rgba(15, 23, 42, 0.56);
-    backdrop-filter: blur(16px);
-  }
-
-  .device-switch-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
     padding: 0.78rem 1rem;
-    border: 1px solid transparent;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 999px;
-    background: transparent;
+    background: rgba(255, 255, 255, 0.03);
     color: rgba(226, 232, 240, 0.86);
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
     transition:
       transform 220ms ease,
       border-color 220ms ease,
       background 220ms ease,
-      color 220ms ease,
-      box-shadow 220ms ease;
+      color 220ms ease;
   }
 
-  .device-switch-button:hover {
+  .nav-link:hover {
     transform: translateY(-1px);
-    border-color: rgba(34, 211, 238, 0.22);
-    background: rgba(8, 47, 73, 0.24);
-    color: rgba(186, 230, 253, 0.96);
+    border-color: rgba(56, 189, 248, 0.24);
+    background: rgba(56, 189, 248, 0.08);
+    color: #ffffff;
   }
 
-  .device-switch-button-active {
-    border-color: rgba(34, 211, 238, 0.34);
-    background: linear-gradient(135deg, rgba(8, 47, 73, 0.5), rgba(15, 23, 42, 0.84));
-    color: rgba(103, 232, 249, 0.98);
-    box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.08);
-  }
-
-  .iphone-scene {
-    display: flex;
-    min-height: 42rem;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1.35rem;
-  }
-
-  .iphone-device {
+  .surface-card {
     position: relative;
-    width: min(100%, 25rem);
-  }
-
-  .iphone-frame {
-    position: relative;
-    border: 1px solid rgba(148, 163, 184, 0.18);
-    border-radius: 3.4rem;
-    padding: 0.85rem 0.85rem 1.35rem;
-    background: linear-gradient(180deg, rgba(30, 41, 59, 0.98), rgba(2, 6, 23, 0.98));
-    box-shadow:
-      0 34px 86px rgba(2, 6, 23, 0.42),
-      inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  }
-
-  .iphone-screen-shell {
-    position: relative;
-    aspect-ratio: 9 / 19.5;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 2.7rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.8rem;
     background:
-      radial-gradient(circle at 84% 14%, rgba(59, 130, 246, 0.22), transparent 26%),
-      radial-gradient(circle at 16% 22%, rgba(34, 211, 238, 0.14), transparent 26%),
-      linear-gradient(180deg, rgba(3, 7, 18, 0.96), rgba(2, 6, 23, 1));
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      linear-gradient(180deg, rgba(14, 18, 27, 0.92), rgba(10, 13, 19, 0.9)),
+      linear-gradient(135deg, rgba(56, 189, 248, 0.05), transparent 42%);
+    box-shadow:
+      0 28px 70px rgba(0, 0, 0, 0.32),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(20px);
   }
 
-  .iphone-screen-shell::after {
+  .surface-card::after {
     content: "";
     position: absolute;
-    inset: 0;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-    background-size: 100% 4px;
-    opacity: 0.14;
+    left: 0;
+    top: 0;
+    height: 1px;
+    width: 6rem;
+    background: linear-gradient(90deg, rgba(56, 189, 248, 0.85), transparent);
+    animation: shine-line 3.8s ease-in-out infinite;
     pointer-events: none;
   }
 
-  .iphone-notch {
-    position: absolute;
-    left: 50%;
-    top: 0.55rem;
-    z-index: 3;
-    height: 1.65rem;
-    width: 8.4rem;
-    transform: translateX(-50%);
-    border-radius: 999px;
-    background: rgba(2, 6, 23, 0.94);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
-  }
-
-  .iphone-status-bar {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 0.9rem 1.15rem 0;
-    color: rgba(226, 232, 240, 0.88);
-    font-family: var(--font-mono);
-    font-size: 0.62rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  .iphone-lock-screen {
-    display: flex;
-    height: 100%;
-    width: 100%;
-    flex-direction: column;
+  .section-label {
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    padding: 4.5rem 1.4rem 2rem;
-    background: transparent;
-    color: inherit;
-    text-align: center;
-  }
-
-  .iphone-lock-time {
-    color: white;
-    font-family: var(--font-display);
-    font-size: clamp(2.6rem, 7vw, 4rem);
-    font-weight: 700;
-    letter-spacing: -0.06em;
-  }
-
-  .iphone-lock-title {
-    margin-top: 1rem;
-    color: rgba(186, 230, 253, 0.95);
-    font-family: var(--font-mono);
+    color: rgba(125, 211, 252, 0.9);
     font-size: 0.72rem;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.22em;
     text-transform: uppercase;
   }
 
-  .iphone-lock-subtitle {
-    margin-top: 0.8rem;
-    max-width: 16rem;
-    color: rgba(148, 163, 184, 0.92);
-    font-size: 0.92rem;
-    line-height: 1.65;
+  .hero-title {
+    max-width: 12ch;
+    color: #ffffff;
+    font-size: clamp(3rem, 7vw, 5.4rem);
+    font-weight: 700;
+    line-height: 0.96;
   }
 
-  .iphone-unlock-indicator {
-    margin-top: 2rem;
-    height: 3rem;
-    width: 3rem;
-    border: 1px solid rgba(34, 211, 238, 0.24);
-    border-radius: 999px;
-    background: rgba(34, 211, 238, 0.08);
-    box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.16);
-    animation: pulse-ring 2.2s ease-in-out infinite;
+  .hero-copy,
+  .section-copy,
+  .card-copy {
+    color: rgba(203, 213, 225, 0.84);
+    line-height: 1.8;
   }
 
-  .iphone-home-screen,
-  .iphone-app-shell {
-    position: relative;
-    z-index: 2;
-    height: calc(100% - 2.1rem);
-    margin-top: 0.35rem;
-    padding: 1.55rem 1rem 1rem;
+  .hero-copy {
+    max-width: 44rem;
+    font-size: 1.04rem;
   }
 
-  .iphone-home-screen {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .iphone-home-copy {
-    padding: 0 0.3rem;
-  }
-
-  .iphone-app-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.8rem;
-    flex: 1;
-    align-content: start;
-  }
-
-  .iphone-app-icon,
-  .iphone-dock-icon {
+  .primary-button,
+  .secondary-button,
+  .fact-pill,
+  .tag-pill,
+  .social-pill,
+  .contact-tile {
     transition:
       transform 220ms ease,
       border-color 220ms ease,
@@ -631,1162 +296,201 @@
       box-shadow 220ms ease;
   }
 
-  .iphone-app-icon {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.45rem;
-    padding: 0.35rem 0.2rem;
-    background: transparent;
-    color: rgba(226, 232, 240, 0.94);
-    text-align: center;
-  }
-
-  .iphone-app-icon:hover {
-    transform: translateY(-1px);
-  }
-
-  .iphone-app-glyph {
+  .primary-button {
     display: inline-flex;
-    height: 3.1rem;
-    width: 3.1rem;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(34, 211, 238, 0.16);
-    border-radius: 1rem;
-    background: linear-gradient(180deg, rgba(8, 47, 73, 0.56), rgba(15, 23, 42, 0.96));
-    color: rgba(103, 232, 249, 0.98);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.04),
-      0 12px 24px rgba(2, 6, 23, 0.22);
+    gap: 0.6rem;
+    padding: 0.95rem 1.2rem;
+    border: 1px solid rgba(125, 211, 252, 0.28);
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.95), rgba(59, 130, 246, 0.94));
+    color: rgba(6, 8, 13, 0.96);
+    font-weight: 700;
+    box-shadow: 0 16px 34px rgba(56, 189, 248, 0.18);
   }
 
-  .iphone-app-name {
-    font-family: var(--font-mono);
-    font-size: 0.56rem;
+  .primary-button:hover {
+    transform: translateY(-2px);
+  }
+
+  .secondary-button,
+  .social-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    padding: 0.95rem 1.1rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.03);
+    color: rgba(226, 232, 240, 0.92);
     font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
   }
 
-  .iphone-app-dock {
-    display: flex;
-    justify-content: center;
-    gap: 0.65rem;
-    margin-top: auto;
-    padding: 0.7rem;
-    border: 1px solid rgba(148, 163, 184, 0.12);
-    border-radius: 1.5rem;
-    background: rgba(15, 23, 42, 0.6);
-    backdrop-filter: blur(16px);
-  }
-
-  .iphone-dock-icon {
-    display: inline-flex;
-    height: 2.8rem;
-    width: 2.8rem;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(148, 163, 184, 0.14);
-    border-radius: 0.95rem;
-    background: linear-gradient(180deg, rgba(8, 47, 73, 0.42), rgba(15, 23, 42, 0.92));
-    color: rgba(186, 230, 253, 0.94);
-  }
-
-  .iphone-dock-icon:hover {
+  .secondary-button:hover,
+  .social-pill:hover {
     transform: translateY(-1px);
-    border-color: rgba(34, 211, 238, 0.28);
+    border-color: rgba(56, 189, 248, 0.22);
+    background: rgba(56, 189, 248, 0.08);
   }
 
-  .iphone-app-shell {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-
-  .iphone-app-header {
-    border: 1px solid rgba(148, 163, 184, 0.12);
-    border-radius: 1.2rem;
-    padding: 0.85rem 0.95rem;
-    background: rgba(2, 6, 23, 0.58);
-    backdrop-filter: blur(14px);
-  }
-
-  .iphone-app-body {
-    min-height: 0;
-    flex: 1;
-    padding-right: 0.15rem;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .iphone-home-button {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    padding-top: 0.9rem;
-    background: transparent;
-  }
-
-  .iphone-home-button-ring {
+  .fact-pill,
+  .tag-pill,
+  .meta-pill {
     display: inline-flex;
-    height: 3.1rem;
-    width: 3.1rem;
-    border: 1px solid rgba(148, 163, 184, 0.28);
-    border-radius: 999px;
-    background: rgba(15, 23, 42, 0.42);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.04),
-      0 8px 20px rgba(2, 6, 23, 0.24);
-    transition:
-      transform 220ms ease,
-      border-color 220ms ease,
-      background 220ms ease;
-  }
-
-  .iphone-home-button:hover .iphone-home-button-ring {
-    transform: scale(1.04);
-    border-color: rgba(34, 211, 238, 0.28);
-    background: rgba(8, 47, 73, 0.32);
-  }
-
-  .iphone-meta-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.8rem;
-  }
-
-  .macbook-scene {
-    position: relative;
-    display: flex;
-    min-height: 42rem;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-  }
-
-  .macbook-unit {
-    position: relative;
-    width: min(100%, 62rem);
-    perspective: 2600px;
-  }
-
-  .macbook-lid {
-    position: relative;
-    z-index: 2;
-    aspect-ratio: 16 / 10;
-    transform: translateY(0);
-    transition:
-      transform 1150ms cubic-bezier(0.2, 0.9, 0.16, 1),
-      filter 500ms ease;
-    filter: drop-shadow(0 38px 70px rgba(2, 6, 23, 0.5));
-  }
-
-  .macbook-lid-open {
-    transform: translateY(0);
-    filter: drop-shadow(0 38px 70px rgba(2, 6, 23, 0.5));
-  }
-
-  .macbook-camera {
-    position: absolute;
-    left: 50%;
-    top: 0.55rem;
-    z-index: 4;
-    height: 0.7rem;
-    width: 4.2rem;
-    transform: translateX(-50%);
+    padding: 0.62rem 0.86rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 999px;
-    background: rgba(2, 6, 23, 0.92);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.03);
+    color: rgba(226, 232, 240, 0.88);
+    font-size: 0.82rem;
   }
 
-  .macbook-camera::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    height: 0.28rem;
-    width: 0.28rem;
-    transform: translate(-50%, -50%);
-    border-radius: 999px;
-    background: rgba(148, 163, 184, 0.7);
-  }
-
-  .macbook-screen {
-    position: relative;
-    height: 100%;
+  .profile-frame {
     overflow: hidden;
-    border: 1px solid rgba(148, 163, 184, 0.16);
-    border-radius: 1.85rem 1.85rem 1.15rem 1.15rem;
-    padding: 0.75rem;
-    background: linear-gradient(180deg, rgba(30, 41, 59, 0.98), rgba(2, 6, 23, 0.98));
-    box-shadow:
-      inset 0 0 0 1px rgba(255, 255, 255, 0.06),
-      0 28px 80px rgba(2, 6, 23, 0.48);
-    backface-visibility: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.45rem;
+    aspect-ratio: 4 / 4.7;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.88), rgba(5, 7, 10, 0.96));
   }
 
-  .macbook-screen::before {
-    content: "";
-    position: absolute;
-    inset: 0.55rem;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 1.3rem 1.3rem 0.95rem 0.95rem;
-    pointer-events: none;
+  .card-title {
+    color: #ffffff;
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
   }
 
-  .screen-reflection {
-    pointer-events: none;
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      120deg,
-      rgba(255, 255, 255, 0.06) 0%,
-      transparent 24%,
-      transparent 58%,
-      rgba(34, 211, 238, 0.08) 100%
-    );
-    mix-blend-mode: screen;
-    opacity: 0.38;
-  }
-
-  .macbook-base {
-    position: relative;
-    margin: -0.8rem auto 0;
-    height: 9.3rem;
-    width: 94%;
-    transform-origin: top center;
-    transform: perspective(2400px) rotateX(74deg);
-    border: 1px solid rgba(148, 163, 184, 0.16);
-    border-radius: 1.8rem 1.8rem 1.2rem 1.2rem;
-    background: linear-gradient(180deg, rgba(71, 85, 105, 0.92), rgba(30, 41, 59, 0.98));
-    box-shadow:
-      0 24px 60px rgba(2, 6, 23, 0.44),
-      inset 0 1px 0 rgba(255, 255, 255, 0.06);
-    overflow: hidden;
-  }
-
-  .macbook-hinge {
-    position: absolute;
-    left: 50%;
-    top: 0.7rem;
-    height: 0.7rem;
-    width: 34%;
-    transform: translateX(-50%);
-    border-radius: 999px;
-    background: rgba(2, 6, 23, 0.42);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  }
-
-  .keyboard-surface {
-    position: absolute;
-    inset: 1.35rem 1rem 2.45rem;
-    z-index: 1;
-    border-radius: 1.2rem;
-    background:
-      repeating-linear-gradient(
-        90deg,
-        rgba(15, 23, 42, 0.9) 0 5.5%,
-        rgba(2, 6, 23, 0.98) 5.5% 8.2%
-      ),
-      repeating-linear-gradient(
-        180deg,
-        rgba(148, 163, 184, 0.18) 0 4%,
-        rgba(2, 6, 23, 0.96) 4% 18%
-      );
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.05),
-      inset 0 -1px 0 rgba(255, 255, 255, 0.03);
-    opacity: 0.95;
-  }
-
-  .power-control {
-    position: absolute;
-    right: 1.45rem;
-    top: 1.35rem;
-    z-index: 3;
-  }
-
-  .power-key {
-    display: inline-flex;
-    height: 2.2rem;
-    width: 2.2rem;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(148, 163, 184, 0.22);
-    border-radius: 0.8rem;
-    background: linear-gradient(180deg, rgba(15, 23, 42, 0.94), rgba(2, 6, 23, 0.96));
+  .card-meta,
+  .contact-label,
+  .stack-label {
     color: rgba(148, 163, 184, 0.82);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.05),
-      0 10px 24px rgba(2, 6, 23, 0.22);
-    transition:
-      transform 220ms ease,
-      border-color 220ms ease,
-      color 220ms ease,
-      box-shadow 220ms ease;
-  }
-
-  .power-key:hover {
-    transform: translateY(-1px);
-    border-color: rgba(34, 211, 238, 0.34);
-    color: rgba(186, 230, 253, 0.96);
-  }
-
-  .power-key:active {
-    transform: translateY(1px) scale(0.95);
-  }
-
-  .power-key-active {
-    border-color: rgba(34, 211, 238, 0.4);
-    color: rgba(103, 232, 249, 0.96);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.05),
-      0 0 0 1px rgba(34, 211, 238, 0.14),
-      0 12px 28px rgba(34, 211, 238, 0.18);
-  }
-
-  .power-key-pressing {
-    animation: power-key-press 320ms cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .power-key-tooltip {
-    pointer-events: none;
-    position: absolute;
-    right: -0.1rem;
-    bottom: calc(100% + 0.65rem);
-    min-width: max-content;
-    padding: 0.5rem 0.7rem;
-    border: 1px solid rgba(34, 211, 238, 0.18);
-    border-radius: 999px;
-    background: rgba(2, 6, 23, 0.88);
-    color: rgba(186, 230, 253, 0.92);
-    font-family: var(--font-mono);
-    font-size: 0.62rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    white-space: nowrap;
-    opacity: 0;
-    transform: translateY(6px) scale(0.96);
-    transition:
-      opacity 180ms ease,
-      transform 180ms ease;
-    box-shadow: 0 14px 30px rgba(2, 6, 23, 0.28);
-  }
-
-  .power-key-tooltip::after {
-    content: "";
-    position: absolute;
-    right: 1rem;
-    top: 100%;
-    border-top: 0.35rem solid rgba(2, 6, 23, 0.88);
-    border-left: 0.35rem solid transparent;
-    border-right: 0.35rem solid transparent;
-  }
-
-  .power-control:hover .power-key-tooltip,
-  .power-control:focus-within .power-key-tooltip {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-
-  .power-led {
-    position: absolute;
-    right: 4.3rem;
-    top: 1.95rem;
-    z-index: 2;
-    height: 0.5rem;
-    width: 0.5rem;
-    border-radius: 999px;
-    background: rgba(71, 85, 105, 0.9);
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05);
-    transition:
-      background 220ms ease,
-      box-shadow 220ms ease;
-  }
-
-  .power-led-active {
-    background: rgba(34, 211, 238, 0.95);
-    box-shadow:
-      0 0 0 1px rgba(255, 255, 255, 0.08),
-      0 0 18px rgba(34, 211, 238, 0.65);
-  }
-
-  .power-led-pressing {
-    animation: power-led-flash 320ms ease-out;
-  }
-
-  .trackpad-surface {
-    position: absolute;
-    bottom: 0.9rem;
-    left: 50%;
-    z-index: 2;
-    height: 2rem;
-    width: 28%;
-    transform: translateX(-50%);
-    border-radius: 1rem;
-    border: 1px solid rgba(148, 163, 184, 0.2);
-    background: rgba(15, 23, 42, 0.58);
-  }
-
-  .power-side-button {
-    position: absolute;
-    right: -0.75rem;
-    top: 38%;
-    z-index: 4;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    padding: 0.8rem 0.55rem;
-    border: 1px solid rgba(148, 163, 184, 0.16);
-    border-left: 0;
-    border-radius: 0 1rem 1rem 0;
-    background: linear-gradient(180deg, rgba(15, 23, 42, 0.96), rgba(2, 6, 23, 0.98));
-    color: rgba(148, 163, 184, 0.82);
-    box-shadow:
-      0 14px 26px rgba(2, 6, 23, 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.04);
-    transition:
-      transform 220ms ease,
-      border-color 220ms ease,
-      color 220ms ease,
-      box-shadow 220ms ease;
-  }
-
-  .power-side-button:hover {
-    transform: translateX(2px);
-    border-color: rgba(34, 211, 238, 0.28);
-    color: rgba(186, 230, 253, 0.96);
-  }
-
-  .power-side-button:active {
-    transform: translateX(3px) scale(0.97);
-  }
-
-  .power-side-button-active {
-    border-color: rgba(34, 211, 238, 0.34);
-    color: rgba(103, 232, 249, 0.96);
-    box-shadow:
-      0 16px 28px rgba(34, 211, 238, 0.16),
-      inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  }
-
-  .power-side-button-pressing {
-    animation: power-key-press 320ms cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .power-side-button-text {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    font-family: var(--font-mono);
-    font-size: 0.52rem;
-    font-weight: 600;
+    font-size: 0.78rem;
+    font-weight: 700;
     letter-spacing: 0.16em;
     text-transform: uppercase;
   }
 
-  .screen-off,
-  .boot-screen,
-  .desktop-shell {
-    position: relative;
-    height: 100%;
-    overflow: hidden;
-    border-radius: 1.25rem 1.25rem 0.9rem 0.9rem;
-    background: linear-gradient(180deg, rgba(2, 6, 23, 0.98), rgba(2, 6, 23, 1));
-  }
-
-  .screen-off {
-    background:
-      radial-gradient(circle at 50% 34%, rgba(34, 211, 238, 0.09), transparent 26%),
-      linear-gradient(180deg, rgba(2, 6, 23, 0.98), rgba(2, 6, 23, 1));
-  }
-
-  .standby-glow {
+  .section-heading-row {
     display: flex;
-    height: 3.5rem;
-    width: 3.5rem;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(34, 211, 238, 0.22);
-    border-radius: 999px;
-    background: rgba(34, 211, 238, 0.08);
-    color: rgba(103, 232, 249, 0.9);
-    animation: pulse-ring 2.4s ease-in-out infinite;
-  }
-
-  .boot-screen::after,
-  .desktop-shell::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-    background-size: 100% 4px;
-    opacity: 0.18;
-    pointer-events: none;
-  }
-
-  .boot-cursor {
-    animation: cursor-blink 1s steps(2, end) infinite;
-  }
-
-  .desktop-shell {
-    display: flex;
-    flex-direction: column;
-    background:
-      radial-gradient(circle at 84% 14%, rgba(59, 130, 246, 0.22), transparent 26%),
-      radial-gradient(circle at 16% 22%, rgba(34, 211, 238, 0.14), transparent 26%),
-      linear-gradient(180deg, rgba(3, 7, 18, 0.92), rgba(2, 6, 23, 0.98));
-  }
-
-  .desktop-topbar {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    align-items: center;
+    flex-wrap: wrap;
+    align-items: end;
     justify-content: space-between;
     gap: 1rem;
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    background: rgba(2, 6, 23, 0.52);
-    backdrop-filter: blur(14px);
   }
 
-  .desktop-brand-row,
-  .desktop-control-row,
-  .laptop-meta-row,
-  .laptop-meta-status,
-  .laptop-meta-actions {
-    min-width: 0;
+  .section-title {
+    color: #ffffff;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
   }
 
-  .desktop-toggle-button {
+  .icon-chip {
     display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    padding: 0.55rem 0.8rem;
-    border: 1px solid rgba(148, 163, 184, 0.14);
-    border-radius: 999px;
-    background: rgba(15, 23, 42, 0.56);
-    color: rgba(226, 232, 240, 0.9);
-    font-family: var(--font-mono);
-    font-size: 0.62rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    transition:
-      transform 220ms ease,
-      border-color 220ms ease,
-      background 220ms ease,
-      color 220ms ease;
-  }
-
-  .desktop-toggle-button:hover {
-    transform: translateY(-1px);
-    border-color: rgba(34, 211, 238, 0.26);
-    background: rgba(8, 47, 73, 0.34);
-    color: rgba(186, 230, 253, 0.96);
-  }
-
-  .desktop-workspace {
-    position: relative;
-    z-index: 2;
-    display: grid;
-    min-height: 0;
-    flex: 1;
-    grid-template-columns: 8.8rem minmax(0, 1fr);
-    gap: 1rem;
-    padding: 1rem;
-    transition: grid-template-columns 220ms ease;
-  }
-
-  .desktop-workspace-expanded {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .desktop-icons {
-    display: grid;
-    align-content: start;
-    gap: 0.75rem;
-    min-width: 0;
-  }
-
-  .desktop-icons-hidden {
-    display: none;
-  }
-
-  .desktop-app,
-  .dock-button,
-  .window-close-button {
-    transition:
-      transform 220ms ease,
-      border-color 220ms ease,
-      background 220ms ease,
-      color 220ms ease,
-      box-shadow 220ms ease;
-  }
-
-  .desktop-app {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.55rem;
-    padding: 0.75rem 0.5rem;
-    border: 1px solid transparent;
-    border-radius: 1.1rem;
-    background: transparent;
-    color: rgba(226, 232, 240, 0.94);
-    text-align: center;
-  }
-
-  .desktop-app:hover {
-    transform: translateY(-1px);
-    border-color: rgba(34, 211, 238, 0.2);
-    background: rgba(8, 47, 73, 0.22);
-  }
-
-  .desktop-app-active {
-    border-color: rgba(34, 211, 238, 0.3);
-    background: rgba(8, 47, 73, 0.32);
-    box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.08);
-  }
-
-  .desktop-app-glyph {
-    display: inline-flex;
-    height: 3.1rem;
-    width: 3.1rem;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(34, 211, 238, 0.16);
-    border-radius: 1rem;
-    background: linear-gradient(180deg, rgba(8, 47, 73, 0.5), rgba(15, 23, 42, 0.92));
-    color: rgba(103, 232, 249, 0.96);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.04),
-      0 12px 24px rgba(2, 6, 23, 0.22);
-  }
-
-  .desktop-app-label {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-  }
-
-  .desktop-stage {
-    min-height: 0;
-    display: flex;
-    overflow: hidden;
-    min-width: 0;
-  }
-
-  .desktop-welcome {
-    display: flex;
-    min-height: 0;
-    width: 100%;
-    align-items: end;
-  }
-
-  .desktop-window {
-    display: flex;
-    height: 100%;
-    min-height: 0;
-    width: 100%;
-    flex-direction: column;
-    overflow: hidden;
-    border: 1px solid rgba(148, 163, 184, 0.12);
-    border-radius: 1.5rem;
-    background: rgba(3, 7, 18, 0.72);
-    box-shadow:
-      0 20px 50px rgba(2, 6, 23, 0.34),
-      inset 0 1px 0 rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(24px);
-  }
-
-  .window-bar {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.85rem 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    background: rgba(2, 6, 23, 0.72);
-  }
-
-  .window-controls {
-    display: flex;
-    align-items: center;
-    gap: 0.45rem;
-  }
-
-  .window-light {
-    display: inline-flex;
-    height: 0.8rem;
-    width: 0.8rem;
-    border-radius: 999px;
-    border: 0;
-  }
-
-  .window-close {
-    background: #fb7185;
-    cursor: pointer;
-  }
-
-  .window-minimize {
-    background: #f59e0b;
-  }
-
-  .window-expand {
-    background: #22c55e;
-  }
-
-  .window-title {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: rgba(186, 230, 253, 0.9);
-  }
-
-  .window-close-button {
-    margin-left: auto;
-    display: inline-flex;
-    height: 2rem;
-    width: 2rem;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(148, 163, 184, 0.16);
-    border-radius: 999px;
-    background: rgba(15, 23, 42, 0.58);
-    color: rgba(226, 232, 240, 0.9);
-  }
-
-  .window-close-button:hover {
-    transform: translateY(-1px);
-    border-color: rgba(34, 211, 238, 0.26);
-    color: rgba(103, 232, 249, 0.96);
-  }
-
-  .desktop-window-body {
-    min-height: 0;
-    flex: 1;
-    padding: 1rem;
-    background: linear-gradient(180deg, rgba(2, 6, 23, 0.46), rgba(2, 6, 23, 0.84));
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .profile-image-shell {
-    position: relative;
-    overflow: hidden;
-    isolation: isolate;
-  }
-
-  .profile-image {
-    position: relative;
-    z-index: 2;
-    opacity: 0;
-    transform: scale(1.035);
-    filter: blur(8px);
-    transition:
-      opacity 420ms ease,
-      transform 680ms cubic-bezier(0.22, 1, 0.36, 1),
-      filter 420ms ease;
-  }
-
-  .profile-image-loaded {
-    opacity: 1;
-    transform: scale(1);
-    filter: blur(0);
-  }
-
-  .profile-image-shimmer {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background:
-      linear-gradient(
-        110deg,
-        rgba(15, 23, 42, 0.92) 18%,
-        rgba(34, 211, 238, 0.18) 35%,
-        rgba(15, 23, 42, 0.92) 52%
-      );
-    background-size: 220% 100%;
-    animation: profile-shimmer 1.4s linear infinite;
-  }
-
-  .desktop-dock {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.75rem;
-    margin: 0 1rem 1rem;
-    padding: 0.65rem 0.9rem;
-    border: 1px solid rgba(148, 163, 184, 0.12);
-    border-radius: 999px;
-    background: rgba(15, 23, 42, 0.62);
-    backdrop-filter: blur(16px);
-  }
-
-  .desktop-dock-minimized {
-    width: fit-content;
-    margin-inline: auto;
-    padding: 0.55rem 0.7rem;
-  }
-
-  .dock-toggle-button {
-    display: inline-flex;
-    height: 2.4rem;
-    width: 2.4rem;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(148, 163, 184, 0.16);
-    border-radius: 999px;
-    background: rgba(8, 47, 73, 0.3);
-    color: rgba(186, 230, 253, 0.94);
-    transition:
-      transform 220ms ease,
-      border-color 220ms ease,
-      background 220ms ease,
-      color 220ms ease;
-  }
-
-  .dock-toggle-button:hover {
-    transform: translateY(-1px);
-    border-color: rgba(34, 211, 238, 0.3);
-    background: rgba(8, 47, 73, 0.44);
-  }
-
-  .dock-button {
-    display: inline-flex;
-    height: 3rem;
     width: 3rem;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(148, 163, 184, 0.14);
+    height: 3rem;
+    border: 1px solid rgba(125, 211, 252, 0.14);
     border-radius: 1rem;
-    background: linear-gradient(180deg, rgba(8, 47, 73, 0.34), rgba(15, 23, 42, 0.88));
-    color: rgba(186, 230, 253, 0.92);
+    background: linear-gradient(180deg, rgba(56, 189, 248, 0.18), rgba(255, 255, 255, 0.03));
+    color: rgba(125, 211, 252, 0.96);
   }
 
-  .dock-button:hover {
-    transform: translateY(-2px);
-    border-color: rgba(34, 211, 238, 0.3);
+  .icon-chip-sm {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.85rem;
   }
 
-  .dock-button-active {
-    border-color: rgba(34, 211, 238, 0.34);
-    box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.08);
+  .project-card:hover,
+  .experience-card:hover,
+  .contact-tile:hover {
+    transform: translateY(-3px);
   }
 
-  .panel-scroll {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(34, 211, 238, 0.4) transparent;
+  .project-media {
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.25rem;
+    background: #05070b;
+    aspect-ratio: 16 / 10;
   }
 
-  .panel-scroll::-webkit-scrollbar {
-    width: 10px;
+  .project-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
-  .panel-scroll::-webkit-scrollbar-thumb {
-    border: 2px solid transparent;
-    border-radius: 999px;
-    background: rgba(34, 211, 238, 0.28);
-    background-clip: padding-box;
+  .contact-tile {
+    display: flex;
+    min-height: 100%;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.25rem;
+    background: rgba(255, 255, 255, 0.03);
   }
 
-  .panel-scroll::-webkit-scrollbar-track {
-    background: transparent;
+  .contact-value {
+    margin-top: 0.3rem;
+    color: #ffffff;
+    font-weight: 600;
   }
 
-  @media (max-width: 1024px) {
-    .macbook-scene {
-      min-height: 34rem;
-    }
-
-    .iphone-scene {
-      min-height: 36rem;
-    }
-
-    .iphone-device {
-      width: min(100%, 22rem);
-    }
-
-    .power-side-button {
-      right: -0.55rem;
-      top: 36%;
-      padding: 0.7rem 0.45rem;
-    }
-
-    .desktop-workspace {
-      grid-template-columns: 1fr;
-      grid-template-rows: auto 1fr;
-    }
-
-    .desktop-workspace-expanded {
-      grid-template-columns: 1fr;
-    }
-
-    .desktop-icons {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fade-up 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
 
-  @media (max-width: 640px) {
-    .system-panel {
-      border-radius: 1.5rem;
-    }
+  .delay-1 {
+    animation-delay: 0.08s;
+  }
 
-    .device-switcher {
-      gap: 0.55rem;
-      margin-bottom: 1rem;
-      padding: 0.45rem;
-    }
+  .delay-2 {
+    animation-delay: 0.16s;
+  }
 
-    .device-switch-button {
-      padding: 0.68rem 0.82rem;
-      font-size: 0.6rem;
-      letter-spacing: 0.12em;
-    }
+  .delay-3 {
+    animation-delay: 0.24s;
+  }
 
-    .status-pill {
-      padding: 0.55rem 0.72rem;
-      font-size: 0.6rem;
-      letter-spacing: 0.16em;
-    }
+  .delay-4 {
+    animation-delay: 0.32s;
+  }
 
-    .macbook-screen {
-      border-radius: 1.2rem 1.2rem 0.8rem 0.8rem;
-      padding: 0.55rem;
-    }
+  .delay-5 {
+    animation-delay: 0.4s;
+  }
+}
 
-    .macbook-base {
-      height: 6.5rem;
-      width: 96%;
-    }
+@media (max-width: 640px) {
+  .surface-card {
+    border-radius: 1.5rem;
+  }
+}
 
-    .macbook-camera {
-      top: 0.42rem;
-      width: 3rem;
-    }
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 
-    .keyboard-surface {
-      inset: 0.95rem 0.65rem 1.6rem;
-    }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 
-    .power-control {
-      right: 1rem;
-      top: 1rem;
-    }
-
-    .power-key {
-      height: 1.85rem;
-      width: 1.85rem;
-    }
-
-    .power-key-tooltip {
-      right: -0.1rem;
-      bottom: calc(100% + 0.5rem);
-      padding: 0.45rem 0.6rem;
-      font-size: 0.58rem;
-      letter-spacing: 0.1em;
-    }
-
-    .power-led {
-      right: 3.3rem;
-      top: 1.5rem;
-    }
-
-    .iphone-scene {
-      min-height: 32rem;
-      gap: 1rem;
-    }
-
-    .iphone-device {
-      width: min(100%, 18.8rem);
-    }
-
-    .iphone-frame {
-      border-radius: 2.4rem;
-      padding: 0.65rem 0.65rem 1rem;
-    }
-
-    .iphone-screen-shell {
-      border-radius: 2rem;
-    }
-
-    .iphone-notch {
-      top: 0.45rem;
-      height: 1.35rem;
-      width: 6.9rem;
-    }
-
-    .iphone-status-bar {
-      padding: 0.8rem 0.9rem 0;
-      font-size: 0.56rem;
-    }
-
-    .iphone-lock-screen {
-      padding: 4rem 1rem 1.4rem;
-    }
-
-    .iphone-lock-title {
-      font-size: 0.62rem;
-      letter-spacing: 0.16em;
-    }
-
-    .iphone-lock-subtitle {
-      font-size: 0.82rem;
-    }
-
-    .iphone-home-screen,
-    .iphone-app-shell {
-      height: calc(100% - 1.95rem);
-      padding: 1.25rem 0.75rem 0.75rem;
-    }
-
-    .iphone-app-grid {
-      gap: 0.65rem;
-    }
-
-    .iphone-app-glyph {
-      height: 2.55rem;
-      width: 2.55rem;
-      border-radius: 0.85rem;
-    }
-
-    .iphone-app-name {
-      font-size: 0.5rem;
-    }
-
-    .iphone-app-dock {
-      gap: 0.5rem;
-      padding: 0.55rem;
-      border-radius: 1.2rem;
-    }
-
-    .iphone-dock-icon {
-      height: 2.35rem;
-      width: 2.35rem;
-      border-radius: 0.82rem;
-    }
-
-    .iphone-app-header {
-      padding: 0.75rem 0.8rem;
-    }
-
-    .iphone-home-button {
-      padding-top: 0.7rem;
-    }
-
-    .iphone-home-button-ring {
-      height: 2.7rem;
-      width: 2.7rem;
-    }
-
-    .power-side-button {
-      right: -0.35rem;
-      top: 34%;
-      padding: 0.6rem 0.38rem;
-      border-radius: 0 0.85rem 0.85rem 0;
-    }
-
-    .power-side-button-text {
-      font-size: 0.46rem;
-      letter-spacing: 0.1em;
-    }
-
-    .trackpad-surface {
-      bottom: 0.65rem;
-      height: 1.15rem;
-      width: 31%;
-    }
-
-    .laptop-meta-row {
-      justify-content: center;
-      text-align: center;
-    }
-
-    .laptop-meta-status,
-    .laptop-meta-actions {
-      justify-content: center;
-    }
-
-    .desktop-topbar {
-      padding: 0.7rem 0.8rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .desktop-brand-row,
-    .desktop-control-row {
-      width: 100%;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .desktop-workspace {
-      gap: 0.8rem;
-      padding: 0.8rem;
-      grid-template-rows: auto minmax(0, 1fr);
-    }
-
-    .desktop-icons {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .desktop-app-glyph {
-      height: 2.5rem;
-      width: 2.5rem;
-      border-radius: 0.9rem;
-    }
-
-    .desktop-app-label {
-      font-size: 0.58rem;
-      letter-spacing: 0.1em;
-    }
-
-    .window-bar {
-      gap: 0.7rem;
-      padding: 0.75rem 0.8rem;
-    }
-
-    .window-title {
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
-    }
-
-    .window-close-button {
-      height: 1.8rem;
-      width: 1.8rem;
-    }
-
-    .desktop-window-body {
-      padding: 0.75rem;
-    }
-
-    .desktop-dock {
-      margin: 0 0.7rem 0.7rem;
-      gap: 0.55rem;
-      padding: 0.55rem 0.7rem;
-    }
-
-    .dock-toggle-button {
-      height: 2rem;
-      width: 2rem;
-    }
-
-    .dock-button {
-      height: 2.45rem;
-      width: 2.45rem;
-    }
+  .reveal {
+    opacity: 1;
+    transform: none;
   }
 }
