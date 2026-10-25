@@ -1,61 +1,112 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
+import {
+  TechnicalCTA,
+  TechnicalHero,
+  TechnicalWindow,
+} from "@/components/TechnicalLayout";
 import { projectItems } from "@/data/portfolioContent";
+import { ProjectIllustration } from "@/components/ProjectIllustration";
 
-export const Projects = () => {
-  return (
-    <div className="flex flex-col gap-8 lg:gap-10">
-      <section className="page-intro reveal">
-        <span className="section-label">Projects</span>
-        <h1 className="section-title mt-4">Selected Technical Work</h1>
-        <p className="section-copy mt-4 max-w-3xl">
-          A broader set of projects across embedded systems, architecture,
-          control, and software delivery.
-        </p>
-      </section>
+export const Projects = () => (
+  <div className="technical-page">
+    <TechnicalHero
+      label={`Projects / ${String(projectItems.length).padStart(2, "0")} selected builds`}
+      title={
+        <>
+          From idea
+          <br />
+          to system.
+        </>
+      }
+      action={
+        <a className="technical-button" href="#project-index">
+          Explore projects <ArrowDown size={18} aria-hidden="true" />
+        </a>
+      }
+    >
+      Projects across embedded systems, AI, databases, games, and software
+      delivery.
+    </TechnicalHero>
 
-      <section className="grid gap-4 xl:grid-cols-2">
+    <section
+      id="project-index"
+      className="technical-section"
+      aria-labelledby="projects-heading"
+    >
+      <div className="technical-section-heading technical-heading-centered">
+        <span className="technical-label">01 / Project index</span>
+        <h2 id="projects-heading">
+          Built to do
+          <br />
+          real work.
+        </h2>
+      </div>
+      <div className="technical-project-grid">
         {projectItems.map((project, index) => (
-          <article
-            key={project.title}
-            className={`surface-card project-card p-5 sm:p-6 reveal delay-${
-              Math.min(index + 1, 5)
-            }`}
-          >
-            <div className="project-media">
-              <img src={project.image} alt={project.title} />
-            </div>
-
-            <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
-              <span className="section-label">{project.category}</span>
-              <div className="flex flex-wrap gap-2">
+          <article key={project.title} className="technical-project-card">
+            <div className="technical-panel technical-project-panel">
+              <div className="technical-panel-caption">
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <span>{project.category}</span>
+              </div>
+              <TechnicalWindow label={project.title}>
+                <div className="technical-image-frame">
+                  {project.illustration ? (
+                    <ProjectIllustration kind={project.illustration} />
+                  ) : (
+                    <img
+                      src={project.image}
+                      alt={`${project.title} project`}
+                      loading="lazy"
+                    />
+                  )}
+                </div>
+              </TechnicalWindow>
+              <div className="technical-project-tags">
                 {project.tags.map((tag) => (
-                  <span key={tag} className="tag-pill">
-                    {tag}
-                  </span>
+                  <span key={tag}>{tag}</span>
                 ))}
               </div>
             </div>
-
-            <h2 className="card-title mt-4">{project.title}</h2>
-            <p className="card-copy mt-3">{project.summary}</p>
-            <p className="project-detail-copy mt-4">{project.detail}</p>
-
-            {project.href && (
-              <div className="mt-6">
+            <div className="technical-project-copy">
+              <span className="technical-label">{project.category}</span>
+              <h3>{project.title}</h3>
+              <p className="technical-summary">{project.summary}</p>
+              {project.detail && (
+                <p className="technical-detail">{project.detail}</p>
+              )}
+              {project.href && (
                 <a
                   href={project.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-link"
+                  className="technical-project-link"
+                  aria-label={`${project.linkLabel || "Open project"}: ${project.title}`}
                 >
-                  Open project
-                  <ArrowUpRight className="h-4 w-4" />
+                  {project.linkLabel || "Open project"}{" "}
+                  <ArrowUpRight size={16} aria-hidden="true" />
                 </a>
-              </div>
-            )}
+              )}
+            </div>
           </article>
         ))}
-      </section>
-    </div>
-  );
-};
+      </div>
+    </section>
+
+    <TechnicalCTA
+      title={
+        <>
+          Let’s build
+          <br />
+          something.
+        </>
+      }
+      label="Get in touch"
+      to="/contact"
+      linkText="Contact me"
+    >
+      Have a project in mind? Let’s talk about systems, software, and what comes
+      next.
+    </TechnicalCTA>
+  </div>
+);

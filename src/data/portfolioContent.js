@@ -1,11 +1,11 @@
 export const profileImagePath = "/profile/profile.png";
+export const homeProfileImagePath = "/profile/zxczcxcz.png";
 export const resumeUrl = "/resume/AbrahamOuResumeMarch2026.pdf";
 
 export const navLinks = [
   { label: "Home", to: "/" },
   { label: "Experience", to: "/experience" },
   { label: "Projects", to: "/projects" },
-  { label: "Memory Book", to: "/memory-book" },
   { label: "Contact", to: "/contact" },
 ];
 
@@ -34,17 +34,14 @@ export const homePreviewLinks = [
   {
     title: "Experience",
     to: "/experience",
-    description: "A deeper look at my current role, previous work, and academic background.",
+    description:
+      "A deeper look at my current role, previous work, and academic background.",
   },
   {
     title: "Projects",
     to: "/projects",
-    description: "Selected technical work across embedded systems, architecture, and software.",
-  },
-  {
-    title: "Memory Book",
-    to: "/memory-book",
-    description: "A lighter page for photos and moments I can keep adding over time.",
+    description:
+      "Selected technical work across embedded systems, architecture, and software.",
   },
   {
     title: "Contact",
@@ -107,6 +104,7 @@ export const projectItems = [
     detail:
       "Built across embedded hardware, communication, backend services, and front-end control workflows.",
     image: "/projects/project5.png",
+    illustration: "rovera",
     tags: ["Telemetry", "Wireless", "Realtime"],
     href: "https://roverauci.vercel.app",
   },
@@ -118,6 +116,7 @@ export const projectItems = [
     detail:
       "Focused on pipeline behavior, control flow, and correct handling of structural and data hazards.",
     image: "/projects/project2.png",
+    illustration: "processor",
     tags: ["Verilog", "Architecture", "Simulation"],
     href: null,
   },
@@ -129,6 +128,7 @@ export const projectItems = [
     detail:
       "Covered YUV/RGB processing, runtime behavior, and low-level memory handling with attention to correctness.",
     image: "/projects/project3.png",
+    illustration: "movielab",
     tags: ["C", "Systems", "Valgrind"],
     href: null,
   },
@@ -140,6 +140,7 @@ export const projectItems = [
     detail:
       "Combined sensing, motion behavior, and physical system constraints into a functional rover platform.",
     image: "/projects/project4.png",
+    illustration: "rover",
     tags: ["Embedded", "Sensors", "Robotics"],
     href: null,
   },
@@ -151,19 +152,66 @@ export const projectItems = [
     detail:
       "Used live data and multithreaded logic to connect embedded behavior to practical building automation.",
     image: "/projects/project1.png",
+    illustration: "building",
     tags: ["Python", "Sensors", "Automation"],
     href: null,
   },
   {
-    title: "Client Personal Website",
-    category: "Front-end delivery",
+    title: "Chess",
+    category: "Game development",
+    summary: "A chess game project developed for EECS 22L.",
+    illustration: "chess",
+    tags: ["Chess", "Coursework", "EECS 22L"],
+    href: "https://github.com/abrahamouu/chess",
+    linkLabel: "View on GitHub",
+  },
+  {
+    title: "AI Maze Pathfinding",
+    category: "AI + search",
     summary:
-      "Designed and built a personal site focused on clarity, presentation, and clean project storytelling.",
+      "Implemented depth-first, breadth-first, uniform-cost, and A* search to guide a Cat-Man agent through maze environments.",
     detail:
-      "Centered on polished layout, responsive behavior, and a concise presentation of academic and technical work.",
-    image: "/projects/clientpersonalwebsite.png",
-    tags: ["React", "UI", "Responsive"],
-    href: null,
+      "An EECS 118 group project exploring graph traversal, priority queues, path costs, and heuristic search in Python.",
+    illustration: "maze",
+    tags: ["Python", "A*", "Graph search"],
+    href: "https://github.com/abrahamouu/EECS118GroupProject",
+    linkLabel: "View on GitHub",
+  },
+  {
+    title: "SQL Database Platform",
+    category: "Databases + backend",
+    summary:
+      "Built a Python command-line application that translates user commands into SQL to manage an agent platform backed by MySQL.",
+    detail:
+      "An EECS 116 project covering relational schemas, CSV imports, record management, and queries across users, models, and services.",
+    illustration: "database",
+    tags: ["Python", "MySQL", "Relational data"],
+    href: "https://github.com/abrahamouu/EECS116FinalProject",
+    linkLabel: "View on GitHub",
+  },
+  {
+    title: "Calculator GUI",
+    category: "Desktop applications",
+    summary:
+      "A Java Swing calculator with a desktop interface for arithmetic and scientific operations.",
+    detail:
+      "Uses reusable event handlers for number buttons, with support for decimals, square roots, and logarithms.",
+    illustration: "calculator",
+    tags: ["Java", "Swing", "Event handling"],
+    href: "https://github.com/abrahamouu/calculatorGUI",
+    linkLabel: "View on GitHub",
+  },
+  {
+    title: "Aphrodite Poker",
+    category: "Networked games",
+    summary:
+      "A poker game in C with socket-based client/server communication and a GTK graphical interface.",
+    detail:
+      "Implements betting rounds, player actions, and hand evaluation, from pairs through royal flushes.",
+    illustration: "poker",
+    tags: ["C", "TCP sockets", "GTK"],
+    href: "https://github.com/abrahamouu/aprodite_poker_game",
+    linkLabel: "View on GitHub",
   },
 ];
 
@@ -184,40 +232,14 @@ export const skillGroups = [
   },
   {
     title: "Tools",
-    items: ["Git", "VS Code", "FastAPI", "PostgreSQL", "SolidWorks", "Valgrind"],
-  },
-];
-
-export const memoryBookIntro = {
-  title: "A place for the personal side.",
-  summary:
-    "This page is set up as a simple memory book so I can keep adding photos and small moments over time.",
-};
-
-export const memoryBookEntries = [
-  {
-    title: "Current Snapshot",
-    caption: "A simple portrait card to anchor the page for now.",
-    image: profileImagePath,
-    status: "Live",
-  },
-  {
-    title: "Basketball",
-    caption: "A slot for court photos, team moments, or pickup runs.",
-    image: null,
-    status: "Add photo later",
-  },
-  {
-    title: "Gym",
-    caption: "A place for training shots, routines, or progress photos.",
-    image: null,
-    status: "Add photo later",
-  },
-  {
-    title: "Weekends",
-    caption: "Space for beach days, travel, or casual memories outside work.",
-    image: null,
-    status: "Add photo later",
+    items: [
+      "Git",
+      "VS Code",
+      "FastAPI",
+      "PostgreSQL",
+      "SolidWorks",
+      "Valgrind",
+    ],
   },
 ];
 
