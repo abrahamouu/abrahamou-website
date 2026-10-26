@@ -1,5 +1,7 @@
 export const profileImagePath = "/profile/profile.png";
-export const homeProfileImagePath = "/profile/zxczcxcz.png";
+export const homeProfileImagePath = "/profile/abraham-ou-portrait-1600.webp";
+// Keep these sources aligned with the preload in index.html.
+export const homeProfileImageSrcSet = `/profile/abraham-ou-portrait-800.webp 1x, ${homeProfileImagePath} 2x`;
 export const resumeUrl = "/resume/AbrahamOuResumeMarch2026.pdf";
 
 export const navLinks = [

@@ -2,12 +2,13 @@ import { ArrowUpRight } from "lucide-react";
 import {
   heroContent,
   homeProfileImagePath,
+  homeProfileImageSrcSet,
   profileCard,
   socialLinks,
 } from "@/data/portfolioContent";
 
 export const HomePortrait = () => (
-  <article className="home-portrait reveal" aria-labelledby="profile-name">
+  <article className="home-portrait" aria-labelledby="profile-name">
     <div className="profile-titlebar mono">
       <span>{profileCard.company}</span>
       <span aria-hidden="true">·</span>
@@ -17,10 +18,13 @@ export const HomePortrait = () => (
       <div className="home-portrait-frame">
         <img
           src={homeProfileImagePath}
+          srcSet={homeProfileImageSrcSet}
           alt="Abraham Ou in graduation attire outside Engineering Hall at UC Irvine"
           fetchPriority="high"
-          width="2584"
-          height="3293"
+          loading="eager"
+          decoding="async"
+          width="1600"
+          height="2039"
         />
       </div>
       <figcaption className="home-portrait-caption">

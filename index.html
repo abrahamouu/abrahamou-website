@@ -5,6 +5,22 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#abbab9" />
+    <script>
+      // Start the homepage portrait before React loads, only on its own route.
+      if (window.location.pathname === "/") {
+        const portraitPreload = document.createElement("link");
+        portraitPreload.rel = "preload";
+        portraitPreload.as = "image";
+        portraitPreload.type = "image/webp";
+        portraitPreload.href = "/profile/abraham-ou-portrait-1600.webp";
+        portraitPreload.setAttribute(
+          "imagesrcset",
+          "/profile/abraham-ou-portrait-800.webp 1x, /profile/abraham-ou-portrait-1600.webp 2x",
+        );
+        portraitPreload.setAttribute("fetchpriority", "high");
+        document.head.appendChild(portraitPreload);
+      }
+    </script>
     <meta
       name="description"
       content="Abraham Ou is an Embedded Software Engineer at TP-Link Systems. Explore his work in embedded software, networking, and computer architecture."
