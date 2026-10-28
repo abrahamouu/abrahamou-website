@@ -1,6 +1,6 @@
 const ink = "#1e1e1e";
 const paper = "#f5eee9";
-const pink = "var(--technical-pink)";
+const accent = "var(--technical-accent)";
 
 const RoverBody = () => (
   <>
@@ -23,7 +23,7 @@ const RoverBody = () => (
       width="84"
       height="130"
       rx="8"
-      fill={pink}
+      fill={accent}
       stroke={ink}
       strokeWidth="2"
     />
@@ -64,7 +64,7 @@ const Rovera = () => (
       y="88"
       width="250"
       height="32"
-      fill={pink}
+      fill={accent}
       stroke={ink}
       strokeWidth="2"
     />
@@ -81,7 +81,7 @@ const Rovera = () => (
     />
     <path
       d="M139 211H165V231H185V257H165V277H139V257H119V231H139Z"
-      fill={pink}
+      fill={accent}
       stroke={ink}
       strokeWidth="2"
     />
@@ -142,7 +142,7 @@ const Processor = () => (
             y="110"
             width="76"
             height="84"
-            fill={index === 2 ? pink : paper}
+            fill={index === 2 ? accent : paper}
             stroke={ink}
             strokeWidth="2"
           />
@@ -166,7 +166,7 @@ const Processor = () => (
     <path
       d="M520 194V232H320V194 M314 202l6-8 6 8"
       fill="none"
-      stroke={pink}
+      stroke={accent}
       strokeWidth="4"
       strokeLinejoin="round"
     />
@@ -205,14 +205,14 @@ const FilmFrame = ({ filtered = false }) => (
       y="30"
       width="164"
       height="120"
-      fill={filtered ? pink : paper}
+      fill={filtered ? accent : paper}
     />
-    <circle cx="127" cy="61" r="15" fill={filtered ? paper : pink} />
+    <circle cx="127" cy="61" r="15" fill={filtered ? paper : accent} />
     <path d="M8 150V123L56 72L99 115L122 92L172 138V150Z" fill={ink} />
     <path
       d="M36 116L56 95L76 116"
       fill="none"
-      stroke={filtered ? pink : paper}
+      stroke={filtered ? accent : paper}
       strokeWidth="3"
     />
   </>
@@ -252,7 +252,7 @@ const AutonomousRover = () => (
     <path
       d="M100 295H320V135"
       fill="none"
-      stroke={pink}
+      stroke={accent}
       strokeWidth="18"
       strokeLinejoin="round"
     />
@@ -266,7 +266,7 @@ const AutonomousRover = () => (
     />
     <path
       d="M320 142L236 45H404Z"
-      fill={pink}
+      fill={accent}
       fillOpacity="0.25"
       stroke={ink}
       strokeDasharray="4 6"
@@ -282,7 +282,7 @@ const AutonomousRover = () => (
       y="37"
       width="40"
       height="35"
-      fill={pink}
+      fill={accent}
       stroke={ink}
       strokeWidth="2"
     />
@@ -326,7 +326,7 @@ const Building = () => (
       y="70"
       width="180"
       height="32"
-      fill={pink}
+      fill={accent}
       stroke={ink}
       strokeWidth="2"
     />
@@ -340,7 +340,7 @@ const Building = () => (
         y={119 + Math.floor(index / 3) * 44}
         width="34"
         height="28"
-        fill={index % 3 === 1 || index === 6 ? pink : paper}
+        fill={index % 3 === 1 || index === 6 ? accent : paper}
         stroke={ink}
         strokeWidth="2"
       />
@@ -357,7 +357,14 @@ const Building = () => (
       stroke={ink}
       strokeWidth="2"
     />
-    <circle cx="124" cy="218" r="11" fill={pink} stroke={ink} strokeWidth="2" />
+    <circle
+      cx="124"
+      cy="218"
+      r="11"
+      fill={accent}
+      stroke={ink}
+      strokeWidth="2"
+    />
     <path
       d="M124 208V161 M137 158H147 M137 175H147"
       fill="none"
@@ -366,7 +373,7 @@ const Building = () => (
     />
     <path
       d="M498 202V196a24 24 0 1 1 24 0v6Z"
-      fill={pink}
+      fill={accent}
       stroke={ink}
       strokeWidth="2"
     />
@@ -404,7 +411,7 @@ const Website = () => (
       y="62"
       width="410"
       height="29"
-      fill={pink}
+      fill={accent}
       stroke={ink}
       strokeWidth="2"
     />
@@ -412,7 +419,14 @@ const Website = () => (
       <circle key={x} cx={x} cy="77" r="3" fill={ink} />
     ))}
     <path d="M381 77H419 M433 77H471" stroke={ink} strokeWidth="2" />
-    <circle cx="164" cy="157" r="29" fill={pink} stroke={ink} strokeWidth="2" />
+    <circle
+      cx="164"
+      cy="157"
+      r="29"
+      fill={accent}
+      stroke={ink}
+      strokeWidth="2"
+    />
     <circle cx="164" cy="150" r="9" fill={paper} stroke={ink} strokeWidth="2" />
     <path
       d="M148 175V169a16 16 0 0 1 32 0v6"
@@ -424,7 +438,7 @@ const Website = () => (
       PORTFOLIO
     </text>
     <path d="M217 162H418 M217 177H364" stroke={ink} strokeWidth="2" />
-    <rect x="217" y="190" width="79" height="17" fill={pink} stroke={ink} />
+    <rect x="217" y="190" width="79" height="17" fill={accent} stroke={ink} />
     {[125, 245, 365].map((x, index) => (
       <g key={x}>
         <rect
@@ -432,7 +446,7 @@ const Website = () => (
           y="234"
           width="96"
           height="60"
-          fill={index === 1 ? pink : paper}
+          fill={index === 1 ? accent : paper}
           stroke={ink}
           strokeWidth="2"
         />
@@ -450,7 +464,7 @@ const Website = () => (
       strokeWidth="2"
     />
     <path d="M487 191H522" stroke={ink} strokeWidth="2" />
-    <rect x="473" y="203" width="63" height="58" fill={pink} stroke={ink} />
+    <rect x="473" y="203" width="63" height="58" fill={accent} stroke={ink} />
     <circle cx="504" cy="224" r="10" fill={paper} stroke={ink} />
     <path
       d="M484 246H525 M474 277H535 M474 289H516 M474 301H529 M496 326H513"
@@ -486,7 +500,7 @@ const Chess = () => (
             y={32 + row * 32}
             width="32"
             height="32"
-            fill={(row + column) % 2 ? pink : paper}
+            fill={(row + column) % 2 ? accent : paper}
           />
           {piece && (
             <text
@@ -542,13 +556,27 @@ const Maze = () => (
     <polyline
       points="330,145 370,145 370,185 350,185 350,225 310,225 310,245 130,245"
       fill="none"
-      stroke={pink}
+      stroke={accent}
       strokeWidth="8"
       strokeLinejoin="round"
       strokeLinecap="round"
     />
-    <circle cx="330" cy="145" r="7" fill={pink} stroke={ink} strokeWidth="2" />
-    <circle cx="130" cy="245" r="7" fill={pink} stroke={ink} strokeWidth="2" />
+    <circle
+      cx="330"
+      cy="145"
+      r="7"
+      fill={accent}
+      stroke={ink}
+      strokeWidth="2"
+    />
+    <circle
+      cx="130"
+      cy="245"
+      r="7"
+      fill={accent}
+      stroke={ink}
+      strokeWidth="2"
+    />
     <text x="320" y="348" textAnchor="middle">
       DFS / BFS / UCS / A*
     </text>
@@ -582,7 +610,7 @@ const Database = () => (
           y={y}
           width="180"
           height="34"
-          fill={pink}
+          fill={accent}
           stroke={ink}
           strokeWidth="2"
         />
@@ -607,7 +635,7 @@ const Calculator = () => (
       y="28"
       width="226"
       height="310"
-      fill={pink}
+      fill={accent}
       stroke={ink}
       strokeWidth="2"
     />
@@ -704,7 +732,7 @@ const Poker = () => (
           width="80"
           height="120"
           rx="3"
-          fill={index === 4 ? pink : paper}
+          fill={index === 4 ? accent : paper}
           stroke={ink}
           strokeWidth="2"
         />

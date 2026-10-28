@@ -7,7 +7,7 @@
   --tab: #fefefe;
   --tab-ink: #1e1e1e;
   --accent: #f386a1;
-  --technical-pink: #f386a1;
+  --technical-accent: #f386a1;
   --technical-black: #1e1e1e;
   background: var(--paper);
   color: var(--ink);
@@ -16,7 +16,7 @@
 
 .dark .portfolio-shell-technical {
   --paper: #131617;
-  --technical-pink: #e98aa3;
+  --technical-accent: #e98aa3;
 }
 
 .portfolio-shell-technical .site-main {
@@ -25,7 +25,7 @@
 
 .portfolio-shell-technical .nav-link-active,
 .portfolio-shell-technical .nav-contact {
-  background: var(--technical-pink);
+  background: var(--technical-accent);
   color: var(--technical-black);
 }
 
@@ -111,7 +111,7 @@
 }
 
 .technical-button:hover {
-  background: var(--technical-pink);
+  background: var(--technical-accent);
 }
 
 .technical-section {
@@ -136,7 +136,7 @@
 
 .technical-panel {
   color: var(--technical-black);
-  background-color: var(--technical-pink);
+  background-color: var(--technical-accent);
   background-image: radial-gradient(
     rgb(30 30 30 / 35%) 0.65px,
     transparent 0.8px
@@ -161,9 +161,9 @@
 
 .technical-window {
   border: 1px solid var(--technical-black);
-  background: var(--technical-pink);
+  background: var(--technical-accent);
   box-shadow:
-    2px 2px 0 var(--technical-pink),
+    2px 2px 0 var(--technical-accent),
     3px 3px 0 var(--technical-black);
 }
 
@@ -174,7 +174,7 @@
   gap: 12px;
   padding: 5px 8px;
   background: var(--technical-black);
-  color: var(--technical-pink);
+  color: var(--technical-accent);
   font-family: var(--font-mono);
   font-size: 12px;
   line-height: 1.5;
@@ -235,7 +235,7 @@
 
   .technical-project-card:is(:hover, :focus-within) .technical-window {
     box-shadow:
-      2px 2px 0 var(--technical-pink),
+      2px 2px 0 var(--technical-accent),
       6px 6px 0 var(--technical-black);
   }
 
@@ -260,7 +260,7 @@
 .technical-project-tags span {
   padding: 3px 7px;
   border: 1px solid var(--technical-black);
-  background: var(--technical-pink);
+  background: var(--technical-accent);
 }
 
 .technical-project-copy {
@@ -303,7 +303,7 @@
 }
 
 .technical-project-link:hover {
-  color: var(--technical-pink);
+  color: var(--technical-accent);
 }
 
 .technical-career-grid,
@@ -360,7 +360,7 @@
 
 .technical-company {
   margin-bottom: 22px;
-  color: var(--technical-pink);
+  color: var(--technical-accent);
   font-size: 14px;
   line-height: 1.5;
 }
@@ -389,7 +389,7 @@
   content: "+";
   position: absolute;
   left: 0;
-  color: var(--technical-pink);
+  color: var(--technical-accent);
 }
 
 .technical-career-tags {

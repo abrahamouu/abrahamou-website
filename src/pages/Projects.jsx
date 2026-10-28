@@ -43,7 +43,11 @@ export const Projects = () => (
       </div>
       <div className="technical-project-grid">
         {projectItems.map((project, index) => (
-          <article key={project.title} className="technical-project-card">
+          <article
+            key={project.title}
+            className="technical-project-card"
+            style={{ "--technical-accent": project.accentColor }}
+          >
             <div className="technical-panel technical-project-panel">
               <div className="technical-panel-caption">
                 <span>{String(index + 1).padStart(2, "0")}</span>
